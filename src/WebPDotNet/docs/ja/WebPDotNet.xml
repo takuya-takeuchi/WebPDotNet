@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:WebPDotNet.CspMode">
+            <summary>
+            色空間を指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGB">
+            <summary>
+            赤、緑、青の各成分が 8 ビットずつ、1 ピクセルが 24 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGBA">
+            <summary>
+            赤、緑、青、アルファの各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.BGR">
+            <summary>
+            青、緑、赤の各成分が 8 ビットずつ、1 ピクセルが 24 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.BGRA">
+            <summary>
+            青、緑、赤、アルファの各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.ARGB">
+            <summary>
+            アルファ、赤、緑、青の各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGBA4444">
+            <summary>
+            赤、緑、青、アルファの各成分が 4 ビットずつ、1 ピクセルが 16 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGB565">
+            <summary>
+            赤の成分に 5 ビット、緑の成分に 6 ビット、青の成分に 5 ビットを使用し、1 ピクセルが 16 ビットのフォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PRGBA">
+            <summary>
+            赤、緑、青、アルファの各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。赤、緑、青の各成分は、アルファ成分に応じてあらかじめ乗算されます。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PBGRA">
+            <summary>
+            赤、緑、青、アルファの各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。青、緑、赤の各成分は、アルファ成分に応じてあらかじめ乗算されます。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PARGB">
+            <summary>
+            アルファ、赤、緑、青の各成分が 8 ビットずつ、1 ピクセルが 32 ビットのフォーマットであることを示します。赤、緑、青の各成分は、アルファ成分に応じてあらかじめ乗算されます。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PRGBA4444">
+            <summary>
+            赤、緑、青、アルファの各成分が 4 ビットずつ、1 ピクセルが 16 ビットのフォーマットであることを示します。赤、緑、青の各成分は、アルファ成分に応じてあらかじめ乗算されます。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.YUV">
+            <summary>
+            透過を含まない YUV フォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.YUVA">
+            <summary>
+            透過を含まない YUVA フォーマットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.Last">
+            <summary>
+            フォーマットが指定されていないことを示します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.DecodedImage">
+            <summary>
+            デコードされた画像を定義します。このクラスは継承できません。
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Colorspace">
+            <summary>
+            この <see cref="T:WebPDotNet.DecodedImage"/> の色空間を取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>この <see cref="T:WebPDotNet.DecodedImage"/> の色空間を表現する <see cref="T:WebPDotNet.CspMode"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Height">
+            <summary>
+            この <see cref="T:WebPDotNet.DecodedImage"/> の高さをピクセル単位で取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>この <see cref="T:WebPDotNet.DecodedImage"/> のピクセル単位の高さ。</returns>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Width">
+            <summary>
+            この <see cref="T:WebPDotNet.DecodedImage"/> の幅をピクセル単位で取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>この <see cref="T:WebPDotNet.DecodedImage"/> のピクセル単位の幅。</returns>
+        </member>
+        <member name="M:WebPDotNet.DecodedImage.DisposeUnmanaged">
+            <summary>
+            アンマネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.EncodedImage">
+            <summary>
+            エンコードされた画像を定義します。このクラスは継承できません。
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.EncodedImage.Size">
+            <summary>
+            この <see cref="T:WebPDotNet.EncodedImage"/> のサイズをバイト単位で取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>この <see cref="T:WebPDotNet.EncodedImage"/> のバイト単位のサイズ。</returns>
+        </member>
+        <member name="M:WebPDotNet.EncodedImage.ToArray">
+            <summary>
+            <see cref="T:WebPDotNet.EncodedImage"/> の内容をバイト配列に書き出します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>新しいバイト配列。</returns>
+        </member>
+        <member name="M:WebPDotNet.EncodedImage.DisposeUnmanaged">
+            <summary>
+            アンマネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.WebP">
+            <summary>
+            libwebp のメソッドを提供します。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebP.GetNativeVersion">
+            <summary>
+            libwebp のラッパーライブラリのバージョン表現である文字列を取得します。
+            </summary>
+            <returns>libwebp のラッパーライブラリのバージョン表現である <see cref="T:System.String"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetDecoderVersion">
+            <summary>
+            デコーダのバージョン ナンバーを返します。
+            </summary>
+            <returns>バージョン ナンバーを表す <see cref="T:System.String"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBA(System.Byte[])">
+            <summary>
+            WebP 画像データを RGBA 画像にデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeARGB(System.Byte[])">
+            <summary>
+            WebP 画像データを ARGB 画像にデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRA(System.Byte[])">
+            <summary>
+            WebP 画像データを BGRA 画像にデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGB(System.Byte[])">
+            <summary>
+            WebP 画像データを RGB 画像にデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGR(System.Byte[])">
+            <summary>
+            WebP 画像データを BGR 画像にデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetEncoderVersion">
+            <summary>
+            エンコーダのバージョン ナンバーを返します。
+            </summary>
+            <returns>バージョン ナンバーを表す <see cref="T:System.String"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeRGB(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            RGB 画像データを WebP 画像にエンコードします。
+            </summary>
+            <param name="rgb">エンコードする RGB 画像データ。</param>
+            <param name="width">エンコードする RGB 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする RGB 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする RGB 画像の 1 行当たりのバイト数。</param>
+            <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeBGR(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            BGR 画像データを WebP 画像にエンコードします。
+            </summary>
+            <param name="rgb">エンコードする BGR 画像データ。</param>
+            <param name="width">エンコードする BGR 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする BGR 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする BGR 画像の 1 行当たりのバイト数。</param>
+            <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeRGBA(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            RGBA 画像データを WebP 画像にエンコードします。
+            </summary>
+            <param name="rgb">エンコードする RGBA 画像データ。</param>
+            <param name="width">エンコードする RGBA 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする RGBA 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする RGBA 画像の 1 行当たりのバイト数。</param>
+            <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeBGRA(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            BGRA 画像データを WebP 画像にエンコードします。
+            </summary>
+            <param name="rgb">エンコードする BGRA 画像データ。</param>
+            <param name="width">エンコードする BGRA 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする BGRA 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする BGRA 画像の 1 行当たりのバイト数。</param>
+            <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="T:WebPDotNet.WebPObject">
+            <summary>
+            ネイティブな構造体のポインタを所持するクラスです。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.#ctor(System.Boolean)">
+            <summary>
+            インスタンスが破棄できるかどうかを指定して、<see cref="T:WebPDotNet.WebPObject"/> クラスの新しいインスタンスを初期化します。
+            </summary>
+            <param name="isEnabledDispose">インスタンスが破棄できる場合は true。それ以外の場合は false。</param>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.IsDisposed">
+            <summary>
+            インスタンスが破棄されているかどうかを示す値を取得します。
+            </summary>
+            <returns>インスタンスが破棄されている場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.IsEnableDispose">
+            <summary>
+            このインスタンスが破棄できるかどうかを示す値を取得します。
+            </summary>
+            <returns>インスタンスが破棄できる場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.NativePtr">
+            <summary>
+            ネイティブ構造体のポインタを取得します。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.ThrowIfDisposed">
+            <summary>
+            オブジェクトが破棄されている場合、<see cref="T:System.ObjectDisposedException"/> がスローされます
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Equals(WebPDotNet.WebPObject)">
+            <summary>
+            このインスタンスともう一つ指定された <see cref="T:WebPDotNet.WebPObject"/> オブジェクトが同じ値かどうかを判断します。
+            </summary>
+            <param name="obj">このインスタンスと比較する <see cref="T:WebPDotNet.WebPObject"/>。</param>
+            <returns><paramref name="obj"/> パラメータの値がこのインスタンスと同じ値の場合 <code>true</code>、それ以外 <code>false</code>。<paramref name="obj"/> が <code>null</code> の場合、このメソッドは <code>false</code> を返します。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Equals(System.Object)">
+            <summary>
+            このインスタンスと指定されたオブジェクト (<see cref="T:WebPDotNet.WebPObject"/> である必要があります) が同じ値かどうかを判断します。
+            </summary>
+            <param name="obj">このインスタンスと比較する <see cref="T:WebPDotNet.WebPObject"/>。</param>
+            <returns><paramref name="obj"/> パラメータの値がこのインスタンスと同じ値の場合 <code>true</code>、それ以外 <code>false</code>。<paramref name="obj"/> が <code>null</code> の場合、このメソッドは <code>false</code> を返します。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.GetHashCode">
+            <summary>
+            この <see cref="T:WebPDotNet.WebPObject"/> のハッシュ コードを返します。
+            </summary>
+            <returns>この <see cref="T:WebPDotNet.WebPObject"/> クラスの 32 bit 符号付整数ハッシュ コード。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.DisposeManaged">
+            <summary>
+            マネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.DisposeUnmanaged">
+            <summary>
+            アンマネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Dispose">
+            <summary>
+            この <see cref="T:WebPDotNet.WebPObject"/> によって使用されている全てのリソースを解放します。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Dispose(System.Boolean)">
+            <summary>
+            この <see cref="T:WebPDotNet.WebPObject"/> によって使用されている全てのリソースを解放します。
+            </summary>
+            <param name="disposing"><see cref="M:System.IDisposable.Dispose"/> メソッドが呼ばれたかどうかを示す値。</param>
+        </member>
+    </members>
+</doc>

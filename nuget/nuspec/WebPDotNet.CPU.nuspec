@@ -1,0 +1,52 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>WebPDotNet</id>
+    <version>1.2.0.20210418</version>
+    <title>WebPDotNet</title>
+    <authors>Takuya Takeuchi</authors>
+    <owners>Takuya Takeuchi</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE.txt</license>
+    <projectUrl>https://github.com/takuya-takeuchi/WebPDotNet</projectUrl>
+    <icon>images\webp128.png</icon>
+    <description>libwebp wrapper library written in C++ and C# for Windows, MacOS and Linux</description>
+    <releaseNotes></releaseNotes>
+    <copyright>© Takuya Takeuchi 2021</copyright>
+    <tags>libwebp .net webp</tags>
+    <serviceable>true</serviceable>
+
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+        <dependency id="System.Drawing.Common" version="5.0.2" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Drawing" targetFramework="net461" />
+    </frameworkAssemblies>
+  </metadata>
+  
+  <files>
+    <file src="..\webp128.png" target="images\" />
+    <file src="build\WebPDotNet.Native.props" target="build\WebPDotNet.props" />
+    <!-- allows the 'WebPDotNet' package to read runtimes\** folder -->
+    <file src="build\WebPDotNet.targets" target="build\WebPDotNet.targets" />
+    <!-- cross-targetting via compile-time references -->
+    <file src="ref\**\*" target="ref" />
+    <file src="..\artifacts\cpu\runtimes\**\*" target="runtimes" />
+
+    <file src="..\..\src\WebPDotNet\bin\Release\netstandard2.0\WebPDotNet.dll" target="lib\netstandard2.0" />
+    <file src="..\..\src\WebPDotNet\bin\Release\netstandard2.0\WebPDotNet.xml" target="lib\netstandard2.0" />
+    <file src="..\..\src\WebPDotNet\docs\ja\*.xml" target="lib\netstandard2.0\ja" />
+
+    <file src="..\artifacts\cpu\runtimes\win-x64\native\WebPDotNetNative.dll" target="runtimes\win-x64\native\WebPDotNetNative.dll" />
+    <file src="..\artifacts\cpu\runtimes\win-x86\native\WebPDotNetNative.dll" target="runtimes\win-x86\native\WebPDotNetNative.dll" />
+    <file src="..\artifacts\cpu\runtimes\linux-x64\native\libWebPDotNetNative.so" target="runtimes\linux-x64\native\libWebPDotNetNative.so" />
+    <file src="..\artifacts\cpu\runtimes\osx-x64\native\libWebPDotNetNative.dylib" target="runtimes\osx-x64\native\libWebPDotNetNative.dylib" />
+
+    <!-- license -->
+    <file src="..\..\LICENSE.txt" target="" />
+    <file src="..\..\licenses\libwebp" target="licenses\libwebp" />
+  </files>
+
+</package>

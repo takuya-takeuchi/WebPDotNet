@@ -1,0 +1,4 @@
+These images are from https://developers.google.com/speed/webp/gallery2 and under the Creative Commons Attribution 4.0 License.
+
+* 1_webp_a.webp
+* 1_webp_ll.webp

@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebPDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:WebPDotNet.CspMode">
+            <summary>
+            Specifies the Colorspaces.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGB">
+            <summary>
+            Specifies that the format is 24 bits per pixel; 8 bits each are used for the red, green, and blue components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGBA">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the red, green, blue, and alpha components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.BGR">
+            <summary>
+            Specifies that the format is 24 bits per pixel; 8 bits each are used for the blue, green, and red components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.BGRA">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the blue, green, red, and alpha components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.ARGB">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red, green, and blue components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGBA4444">
+            <summary>
+            Specifies that the format is 16 bits per pixel; 4 bits each are used for the red, green, blue, and alpha components.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.RGB565">
+            <summary>
+            Specifies that the format is 16 bits per pixel; 5 bits are used for the red component, 6 bits are used for the green component, and 5 bits are used for the blue component.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PRGBA">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the red, green, blue, and alpha components. The red, green, and blue components are premultiplied, according to the alpha component.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PBGRA">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the blue, green, red, and alpha components. The blue, green, and red components are premultiplied, according to the alpha component.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PARGB">
+            <summary>
+            Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red, green, and blue components. The red, green, and blue components are premultiplied, according to the alpha component.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.PRGBA4444">
+            <summary>
+            Specifies that the format is 16 bits per pixel; 4 bits each are used for the red, green, blue, and alpha components. The red, green, and blue components are premultiplied, according to the alpha component.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.YUV">
+            <summary>
+            Specifies that the format is YUV, without transparency.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.YUVA">
+            <summary>
+            Specifies that the format is YUVA, without transparency.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.CspMode.Last">
+            <summary>
+            Specifies that the format is not specified.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.DecodedImage">
+            <summary>
+            Defines the decoded image. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Colorspace">
+            <summary>
+            Gets a colorspace of this <see cref="T:WebPDotNet.DecodedImage"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>A <see cref="T:WebPDotNet.CspMode"/> that represents the colorspace for this <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Height">
+            <summary>
+            Gets the height, in pixels, of this <see cref="T:WebPDotNet.DecodedImage"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>The height, in pixels, of this <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.DecodedImage.Width">
+            <summary>
+            Gets the width, in pixels, of this <see cref="T:WebPDotNet.DecodedImage"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>The width, in pixels, of this <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.DecodedImage.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.EncodedImage">
+            <summary>
+            Defines the encoded image. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.EncodedImage.Size">
+            <summary>
+            Gets the size, in bytes, of this <see cref="T:WebPDotNet.EncodedImage"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>The size, in bytes, of this <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.EncodedImage.ToArray">
+            <summary>
+            Writes the <see cref="T:WebPDotNet.EncodedImage"/> contents to a byte array.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>A new byte array.</returns>
+        </member>
+        <member name="M:WebPDotNet.EncodedImage.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.WebP">
+            <summary>
+            Provides the methods of libwebp.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebP.GetNativeVersion">
+            <summary>
+            Get the string representation of the version of wrapper library of libwebp.
+            </summary>
+            <returns>A <see cref="T:System.String"/> represents version number of wrapper library of libwebp.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetDecoderVersion">
+            <summary>
+            Return the encoder's version number.
+            </summary>
+            <returns>A <see cref="T:System.String"/> represents version number.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBA(System.Byte[])">
+            <summary>
+            Decodes WebP image data to RGBA image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeARGB(System.Byte[])">
+            <summary>
+            Decodes WebP image data to ARGB image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRA(System.Byte[])">
+            <summary>
+            Decodes WebP image data to BGRA image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGB(System.Byte[])">
+            <summary>
+            Decodes WebP image data to RGB image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGR(System.Byte[])">
+            <summary>
+            Decodes WebP image data to BGR image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetEncoderVersion">
+            <summary>
+            Return the encoder's version number.
+            </summary>
+            <returns>A <see cref="T:System.String"/> represents version number.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeRGB(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Encodes RGB image data to WebP image.
+            </summary>
+            <param name="rgb">The RGB image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw RGB image to encode.</param>
+            <param name="height">The height, in pixels, of the raw RGB image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw RGB image to encode.</param>
+            <param name="qualityFactor">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0. Or <paramref name="qualityFactor"/> must be from 0 to 100.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeBGR(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Encodes BGR image data to WebP image.
+            </summary>
+            <param name="bgr">The BGR image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw BGR image to encode.</param>
+            <param name="height">The height, in pixels, of the raw BGR image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw BGR image to encode.</param>
+            <param name="qualityFactor">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgr"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0. Or <paramref name="qualityFactor"/> must be from 0 to 100.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeRGBA(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Encodes RGBA image data to WebP image.
+            </summary>
+            <param name="rgba">The RGBA image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw RGBA image to encode.</param>
+            <param name="height">The height, in pixels, of the raw RGBA image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw RGBA image to encode.</param>
+            <param name="qualityFactor">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgba"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0. Or <paramref name="qualityFactor"/> must be from 0 to 100.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeBGRA(System.Byte[],System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Encodes BGRA image data to WebP image.
+            </summary>
+            <param name="bgra">The BGRA image data to encode.</param>
+            <param name="width">The width, in pixels, of the BGRA image to encode.</param>
+            <param name="height">The height, in pixels, of the BGRA image to encode.</param>
+            <param name="stride">The stride, in bytes, of the BGRA image to encode.</param>
+            <param name="qualityFactor">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgra"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0. Or <paramref name="qualityFactor"/> must be from 0 to 100.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="T:WebPDotNet.WebPObject">
+            <summary>
+            A class which has a pointer of native structure.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebPDotNet.WebPObject"/> class with the specified value indicating whether this instance is disposable.
+            </summary>
+            <param name="isEnabledDispose">true if this instance is disposable; otherwise, false.</param>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance has been disposed.
+            </summary>
+            <returns>true if this instance has been disposed; otherwise, false.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.IsEnableDispose">
+            <summary>
+            Gets a value indicating whether this instance is disposable.
+            </summary>
+            <returns>true if this instance is disposable; otherwise, false.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPObject.NativePtr">
+            <summary>
+            Gets a pointer of native structure.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.ThrowIfDisposed">
+            <summary>
+            If this object is disposed, then <see cref="T:System.ObjectDisposedException"/> is thrown.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Equals(WebPDotNet.WebPObject)">
+            <summary>
+            Determines whether this instance and another specified <see cref="T:WebPDotNet.WebPObject"/> object have the same value.
+            </summary>
+            <param name="obj">The <see cref="T:WebPDotNet.WebPObject"/> to compare to this instance.</param>
+            <returns><code>true</code> if the value of the <paramref name="obj"/> parameter is the same as the value of this instance; otherwise, <code>false</code>. If <paramref name="obj"/> is <code>null</code>, the method returns <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Equals(System.Object)">
+            <summary>
+            Determines whether this instance and a specified object, which must also be a <see cref="T:WebPDotNet.WebPObject"/> object, have the same value.
+            </summary>
+            <param name="obj">The <see cref="T:WebPDotNet.WebPObject"/> to compare to this instance.</param>
+            <returns><code>true</code> if <paramref name="obj"/> is a <see cref="T:WebPDotNet.WebPObject"/> and its value is the same as this instance; otherwise, <code>false</code>. If <paramref name="obj"/> is <code>null</code>, the method returns <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.GetHashCode">
+            <summary>
+            Returns the hash code for this <see cref="T:WebPDotNet.WebPObject"/>.
+            </summary>
+            <returns>A 32-bit signed integer hash code.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.DisposeManaged">
+            <summary>
+            Releases all managed resources.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Dispose">
+            <summary>
+            Releases all resources used by this <see cref="T:WebPDotNet.WebPObject"/>.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPObject.Dispose(System.Boolean)">
+            <summary>
+            Releases all resources used by this <see cref="T:WebPDotNet.WebPObject"/>.
+            </summary>
+            <param name="disposing">Indicate value whether <see cref="M:System.IDisposable.Dispose"/> method was called.</param>
+        </member>
+    </members>
+</doc>

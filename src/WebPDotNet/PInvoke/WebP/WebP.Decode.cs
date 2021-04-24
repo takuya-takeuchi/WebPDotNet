@@ -53,6 +53,41 @@ namespace WebPDotNet
                                                        out int32_t height);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPDecodeRGBInto(IntPtr data,
+                                                           size_t data_size,
+                                                           IntPtr output,
+                                                           int64_t size,
+                                                           int32_t stride);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPDecodeARGBInto(IntPtr data,
+                                                            size_t data_size,
+                                                            IntPtr output,
+                                                            int64_t size,
+                                                            int32_t stride);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPDecodeRGBAInto(IntPtr data,
+                                                            size_t data_size,
+                                                            IntPtr output,
+                                                            int64_t size,
+                                                            int32_t stride);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPDecodeBGRInto(IntPtr data,
+                                                           size_t data_size,
+                                                           IntPtr output,
+                                                           int64_t size,
+                                                           int32_t stride);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPDecodeBGRAInto(IntPtr data,
+                                                            size_t data_size,
+                                                            IntPtr output,
+                                                            int64_t width,
+                                                            int32_t stride);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
         [return: MarshalAs(UnmanagedType.U1)]
         public static extern bool webp_WebPGetInfo(IntPtr data,
                                                    size_t data_size,

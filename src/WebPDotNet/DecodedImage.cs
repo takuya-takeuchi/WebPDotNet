@@ -15,17 +15,34 @@ namespace WebPDotNet
 
         #region Constructors
 
-        internal DecodedImage(IntPtr ptr, int width, int height, CspMode mode)
+        internal DecodedImage(IntPtr ptr, int width, int height, CspMode mode, int channel)
         {
             this.NativePtr = ptr;
             this._Width = width;
             this._Height = height;
             this._Colorspace = mode;
+            this._Channel = channel;
         }
 
         #endregion
 
         #region Properties
+
+        private readonly int _Channel;
+
+        /// <summary>
+        /// Gets the number of channel, of this <see cref="DecodedImage"/>.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">This object is disposed.</exception>
+        /// <returns>The number of channel, of this <see cref="DecodedImage"/>.</returns>
+        public int Channel
+        {
+            get
+            {
+                this.ThrowIfDisposed();
+                return this._Channel;
+            }            
+        }
 
         private readonly CspMode _Colorspace;
 
@@ -78,6 +95,20 @@ namespace WebPDotNet
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Writes the <see cref="DecodedImage"/> contents to a byte array.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">This object is disposed.</exception>
+        /// <returns>A new byte array.</returns>
+        public byte[] ToArray()
+        {
+            this.ThrowIfDisposed();
+            
+            var image = new byte[this._Width * this._Height * this._Channel];
+            Marshal.Copy(this.NativePtr, image, 0, image.Length);
+            return image;
+        }
 
         #endregion
 

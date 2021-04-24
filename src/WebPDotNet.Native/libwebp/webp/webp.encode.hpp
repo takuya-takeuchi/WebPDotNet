@@ -49,4 +49,40 @@ DLLEXPORT const size_t webp_WebPEncodeBGRA(const uint8_t* bgra,
     return ::WebPEncodeBGRA(bgra, width, height, stride, quality_factor, output);
 }
 
+DLLEXPORT const size_t webp_WebPEncodeLosslessRGB(const uint8_t* rgb,
+                                                  const int32_t width,
+                                                  const int32_t height,
+                                                  const int32_t stride,
+                                                  uint8_t** output)
+{
+    return ::WebPEncodeLosslessRGB(rgb, width, height, stride, output);
+}
+
+DLLEXPORT const size_t webp_WebPEncodeLosslessBGR(const uint8_t* bgr,
+                                                  const int32_t width,
+                                                  const int32_t height,
+                                                  const int32_t stride,
+                                                  uint8_t** output)
+{
+    return ::WebPEncodeLosslessBGR(bgr, width, height, stride, output);
+}
+
+DLLEXPORT const size_t webp_WebPEncodeLosslessRGBA(const uint8_t* rgba,
+                                                   const int32_t width,
+                                                   const int32_t height,
+                                                   const int32_t stride,
+                                                   uint8_t** output)
+{
+    return ::WebPEncodeLosslessRGBA(rgba, width, height, stride, output);
+}
+
+DLLEXPORT const size_t webp_WebPEncodeLosslessBGRA(const uint8_t* bgra,
+                                                   const int32_t width,
+                                                   const int32_t height,
+                                                   const int32_t stride,
+                                                   uint8_t** output)
+{
+    return ::WebPEncodeLosslessBGRA(bgra, width, height, stride, output);
+}
+
 #endif // _CPP_WEBP_ENCODE_H_

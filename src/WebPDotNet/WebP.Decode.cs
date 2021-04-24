@@ -35,7 +35,7 @@ namespace WebPDotNet
                 fixed (byte* p = &data[0])
                 {
                     var ret = NativeMethods.webp_WebPDecodeRGBA((IntPtr)p, data.Length, out var width, out var height);
-                    return new DecodedImage(ret, width, height, CspMode.RGBA);
+                    return new DecodedImage(ret, width, height, CspMode.RGBA, 4);
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace WebPDotNet
                 fixed (byte* p = &data[0])
                 {
                     var ret = NativeMethods.webp_WebPDecodeRGBA((IntPtr)p, data.Length, out var width, out var height);
-                    return new DecodedImage(ret, width, height, CspMode.ARGB);
+                    return new DecodedImage(ret, width, height, CspMode.ARGB, 4);
                 }
             }
         }
@@ -76,8 +76,8 @@ namespace WebPDotNet
             {
                 fixed (byte* p = &data[0])
                 {
-                    var ret = NativeMethods.webp_WebPDecodeRGBA((IntPtr)p, data.Length, out var width, out var height);
-                    return new DecodedImage(ret, width, height, CspMode.BGRA);
+                    var ret = NativeMethods.webp_WebPDecodeBGRA((IntPtr)p, data.Length, out var width, out var height);
+                    return new DecodedImage(ret, width, height, CspMode.BGRA, 4);
                 }
             }
         }
@@ -98,7 +98,7 @@ namespace WebPDotNet
                 fixed (byte* p = &data[0])
                 {
                     var ret = NativeMethods.webp_WebPDecodeRGB((IntPtr)p, data.Length, out var width, out var height);
-                    return new DecodedImage(ret, width, height, CspMode.RGB);
+                    return new DecodedImage(ret, width, height, CspMode.RGB, 3);
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace WebPDotNet
                 fixed (byte* p = &data[0])
                 {
                     var ret = NativeMethods.webp_WebPDecodeBGR((IntPtr)p, data.Length, out var width, out var height);
-                    return new DecodedImage(ret, width, height, CspMode.BGR);
+                    return new DecodedImage(ret, width, height, CspMode.BGR, 3);
                 }
             }
         }

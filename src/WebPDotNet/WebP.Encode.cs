@@ -171,6 +171,142 @@ namespace WebPDotNet
             }
         }
 
+        /// <summary>
+        /// Encodes RGB image data to lossless WebP image.
+        /// </summary>
+        /// <param name="rgb">The RGB image data to encode.</param>
+        /// <param name="width">The width, in pixels, of the raw RGB image to encode.</param>
+        /// <param name="height">The height, in pixels, of the raw RGB image to encode.</param>
+        /// <param name="stride">The stride, in bytes, of the raw RGB image to encode.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="rgb"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+        /// <returns>A new <see cref="EncodedImage"/>.</returns>
+        public static EncodedImage WebPEncodeLosslessRGB(byte[] rgb,
+                                                         int width,
+                                                         int height,
+                                                         int stride)
+        {
+            if (rgb == null)
+                throw new ArgumentNullException(nameof(rgb));
+            if (!(width > 0))
+                throw new ArgumentOutOfRangeException(nameof(width), $"{nameof(width)} must be more than 0.");
+            if (!(height > 0))
+                throw new ArgumentOutOfRangeException(nameof(height), $"{nameof(height)} must be more than 0.");
+            if (!(stride > 0))
+                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
+
+            unsafe
+            {
+                fixed (byte* p = &rgb[0])
+                {
+                    var size = NativeMethods.webp_WebPEncodeLosslessRGB((IntPtr)p, width, height, stride, out var output);
+                    return new EncodedImage(output, (int)size);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Encodes BGR image data to lossless WebP image.
+        /// </summary>
+        /// <param name="bgr">The BGR image data to encode.</param>
+        /// <param name="width">The width, in pixels, of the raw BGR image to encode.</param>
+        /// <param name="height">The height, in pixels, of the raw BGR image to encode.</param>
+        /// <param name="stride">The stride, in bytes, of the raw BGR image to encode.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="bgr"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+        /// <returns>A new <see cref="EncodedImage"/>.</returns>
+        public static EncodedImage WebPEncodeLosslessBGR(byte[] bgr,
+                                                         int width,
+                                                         int height,
+                                                         int stride)
+        {
+            if (bgr == null)
+                throw new ArgumentNullException(nameof(bgr));
+            if (!(width > 0))
+                throw new ArgumentOutOfRangeException(nameof(width), $"{nameof(width)} must be more than 0.");
+            if (!(height > 0))
+                throw new ArgumentOutOfRangeException(nameof(height), $"{nameof(height)} must be more than 0.");
+            if (!(stride > 0))
+                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
+
+            unsafe
+            {
+                fixed (byte* p = &bgr[0])
+                {
+                    var size = NativeMethods.webp_WebPEncodeLosslessBGR((IntPtr)p, width, height, stride, out var output);
+                    return new EncodedImage(output, (int)size);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Encodes RGBA image data to lossless WebP image.
+        /// </summary>
+        /// <param name="rgba">The RGBA image data to encode.</param>
+        /// <param name="width">The width, in pixels, of the raw RGBA image to encode.</param>
+        /// <param name="height">The height, in pixels, of the raw RGBA image to encode.</param>
+        /// <param name="stride">The stride, in bytes, of the raw RGBA image to encode.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="rgba"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+        /// <returns>A new <see cref="EncodedImage"/>.</returns>
+        public static EncodedImage WebPEncodeLosslessRGBA(byte[] rgba,
+                                                          int width,
+                                                          int height,
+                                                          int stride)
+        {
+            if (rgba == null)
+                throw new ArgumentNullException(nameof(rgba));
+            if (!(width > 0))
+                throw new ArgumentOutOfRangeException(nameof(width), $"{nameof(width)} must be more than 0.");
+            if (!(height > 0))
+                throw new ArgumentOutOfRangeException(nameof(height), $"{nameof(height)} must be more than 0.");
+            if (!(stride > 0))
+                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
+
+            unsafe
+            {
+                fixed (byte* p = &rgba[0])
+                {
+                    var size = NativeMethods.webp_WebPEncodeLosslessRGBA((IntPtr)p, width, height, stride, out var output);
+                    return new EncodedImage(output, (int)size);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Encodes BGRA image data to lossless WebP image.
+        /// </summary>
+        /// <param name="bgra">The BGRA image data to encode.</param>
+        /// <param name="width">The width, in pixels, of the raw BGRA image to encode.</param>
+        /// <param name="height">The height, in pixels, of the raw BGRA image to encode.</param>
+        /// <param name="stride">The stride, in bytes, of the raw BGRA image to encode.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="bgra"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+        /// <returns>A new <see cref="EncodedImage"/>.</returns>
+        public static EncodedImage WebPEncodeLosslessBGRA(byte[] bgra,
+                                                          int width,
+                                                          int height,
+                                                          int stride)
+        {
+            if (bgra == null)
+                throw new ArgumentNullException(nameof(bgra));
+            if (!(width > 0))
+                throw new ArgumentOutOfRangeException(nameof(width), $"{nameof(width)} must be more than 0.");
+            if (!(height > 0))
+                throw new ArgumentOutOfRangeException(nameof(height), $"{nameof(height)} must be more than 0.");
+            if (!(stride > 0))
+                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
+
+            unsafe
+            {
+                fixed (byte* p = &bgra[0])
+                {
+                    var size = NativeMethods.webp_WebPEncodeLosslessBGRA((IntPtr)p, width, height, stride, out var output);
+                    return new EncodedImage(output, (int)size);
+                }
+            }
+        }
+
     }
 
 }

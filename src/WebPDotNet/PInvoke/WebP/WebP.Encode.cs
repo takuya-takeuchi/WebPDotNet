@@ -55,6 +55,35 @@ namespace WebPDotNet
                                                         float quality_factor,
                                                         out IntPtr output);
 
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPEncodeLosslessRGB(IntPtr rgb,
+                                                               int32_t width,
+                                                               int32_t height,
+                                                               int32_t stride,
+                                                               out IntPtr output);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPEncodeLosslessBGR(IntPtr bgr,
+                                                               int32_t width,
+                                                               int32_t height,
+                                                               int32_t stride,
+                                                               out IntPtr output);
+
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPEncodeLosslessRGBA(IntPtr rgba,
+                                                                int32_t width,
+                                                                int32_t height,
+                                                                int32_t stride,
+                                                                out IntPtr output);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPEncodeLosslessBGRA(IntPtr bgra,
+                                                                int32_t width,
+                                                                int32_t height,
+                                                                int32_t stride,
+                                                                out IntPtr output);
+
         #endregion
 
     }

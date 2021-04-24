@@ -4,6 +4,41 @@
         <name>WebPDotNet</name>
     </assembly>
     <members>
+        <member name="T:WebPDotNet.AlphaCompression">
+            <summary>
+            アルファ プレーンのエンコード アルゴリズムを指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaCompression.None">
+            <summary>
+            アルファ プレーンが圧縮されないことを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaCompression.CompressedWithWebP">
+            <summary>
+            アルファ プレーンが WebP ロスレスを伴って圧縮されることを示します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.AlphaFiltering">
+            <summary>
+            アルファ プレーンの予測フィルタリングを指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.None">
+            <summary>
+            予測フィルタリングが使用されないことを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.Fast">
+            <summary>
+            Fast メソッドが使用されることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.Best">
+            <summary>
+            Best メソッドが使用されることを示します。
+            </summary>
+        </member>
         <member name="T:WebPDotNet.CspMode">
             <summary>
             色空間を指定します。
@@ -84,6 +119,13 @@
             デコードされた画像を定義します。このクラスは継承できません。
             </summary>
         </member>
+        <member name="P:WebPDotNet.DecodedImage.Channel">
+            <summary>
+            この <see cref="T:WebPDotNet.DecodedImage"/> のチャネル数を取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>この <see cref="T:WebPDotNet.DecodedImage"/> のチャネル数。</returns>
+        </member>
         <member name="P:WebPDotNet.DecodedImage.Colorspace">
             <summary>
             この <see cref="T:WebPDotNet.DecodedImage"/> の色空間を取得します。
@@ -104,6 +146,13 @@
             </summary>
             <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
             <returns>この <see cref="T:WebPDotNet.DecodedImage"/> のピクセル単位の幅。</returns>
+        </member>
+        <member name="M:WebPDotNet.DecodedImage.ToArray">
+            <summary>
+            <see cref="T:WebPDotNet.DecodedImage"/> の内容をバイト配列に書き出します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>新しいバイト配列。</returns>
         </member>
         <member name="M:WebPDotNet.DecodedImage.DisposeUnmanaged">
             <summary>
@@ -132,6 +181,41 @@
         <member name="M:WebPDotNet.EncodedImage.DisposeUnmanaged">
             <summary>
             アンマネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.FilterType">
+            <summary>
+            フィルターの種類を指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.FilterType.Simple">
+            <summary>
+            フィルタの種別が Simple であることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.FilterType.Strong">
+            <summary>
+            フィルタの種別が Strong であることを示します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.PreprocessingFilter">
+            <summary>
+            前処理フィルターを指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.None">
+            <summary>
+            前処理フィルターが使用されないことを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.SegmentSmooth">
+            <summary>
+            Segment-Smooth が使用されることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.PseudoRandomDithering">
+            <summary>
+            Pseudo-Random Dithering が使用されることを示します。
             </summary>
         </member>
         <member name="T:WebPDotNet.WebP">
@@ -191,6 +275,67 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
             <returns>新しい <see cref="T:WebPDotNet.DecodedImage"/>。</returns>
         </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            WebP 画像データを 8 ビット符号なし整数の配列に RGB 画像としてデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="output">コピー先の配列。</param>
+            <param name="stride">エンコードする画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> または <paramref name="output"/> が null です。</exception>
+            <returns>デコードが成功した場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBAInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            WebP 画像データを 8 ビット符号なし整数の配列に RGBA 画像としてデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="output">コピー先の配列。</param>
+            <param name="stride">エンコードする画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> または <paramref name="output"/> が null です。</exception>
+            <returns>デコードが成功した場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeARGBInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            WebP 画像データを 8 ビット符号なし整数の配列に ARGB 画像としてデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="output">コピー先の配列。</param>
+            <param name="stride">エンコードする画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> または <paramref name="output"/> が null です。</exception>
+            <returns>デコードが成功した場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            WebP 画像データを 8 ビット符号なし整数の配列に BGR 画像としてデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="output">コピー先の配列。</param>
+            <param name="stride">エンコードする画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> または <paramref name="output"/> が null です。</exception>
+            <returns>デコードが成功した場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRAInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            WebP 画像データを 8 ビット符号なし整数の配列に BGRA 画像としてデコードします。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="output">コピー先の配列。</param>
+            <param name="stride">エンコードする画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> または <paramref name="output"/> が null です。</exception>
+            <returns>デコードが成功した場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetInfo(System.Byte[],System.Int32@,System.Int32@)">
+            <summary>
+            WebP 画像データを検証し、画像の幅と高さを取得します。
+            </summary>
+            <param name="data">デコードする WebP 画像データ。</param>
+            <param name="width"><paramref name="data"/> が WebP 画像である場合、メソッドから戻る際に、WebP 画像のピクセル単位の幅を格納します。それ以外 <code>0</code>。このパラメータは初期化されずに渡されます。</param>
+            <param name="height"><paramref name="data"/> が WebP 画像である場合、メソッドから戻る際に、WebP 画像のピクセル単位の高さを格納します。それ以外 <code>0</code>。このパラメータは初期化されずに渡されます。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> が null です。</exception>
+            <returns><paramref name="data"/> が WebP 画像である場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
         <member name="M:WebPDotNet.WebP.WebPGetEncoderVersion">
             <summary>
             エンコーダのバージョン ナンバーを返します。
@@ -214,12 +359,12 @@
             <summary>
             BGR 画像データを WebP 画像にエンコードします。
             </summary>
-            <param name="rgb">エンコードする BGR 画像データ。</param>
+            <param name="bgr">エンコードする BGR 画像データ。</param>
             <param name="width">エンコードする BGR 画像のピクセル単位の幅。</param>
             <param name="height">エンコードする BGR 画像のピクセル単位の高さ。</param>
             <param name="stride">エンコードする BGR 画像の 1 行当たりのバイト数。</param>
             <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgr"/> が null です。</exception>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
             <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
         </member>
@@ -227,12 +372,12 @@
             <summary>
             RGBA 画像データを WebP 画像にエンコードします。
             </summary>
-            <param name="rgb">エンコードする RGBA 画像データ。</param>
+            <param name="rgba">エンコードする RGBA 画像データ。</param>
             <param name="width">エンコードする RGBA 画像のピクセル単位の幅。</param>
             <param name="height">エンコードする RGBA 画像のピクセル単位の高さ。</param>
             <param name="stride">エンコードする RGBA 画像の 1 行当たりのバイト数。</param>
             <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgba"/> が null です。</exception>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
             <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
         </member>
@@ -240,14 +385,354 @@
             <summary>
             BGRA 画像データを WebP 画像にエンコードします。
             </summary>
-            <param name="rgb">エンコードする BGRA 画像データ。</param>
+            <param name="bgra">エンコードする BGRA 画像データ。</param>
             <param name="width">エンコードする BGRA 画像のピクセル単位の幅。</param>
             <param name="height">エンコードする BGRA 画像のピクセル単位の高さ。</param>
             <param name="stride">エンコードする BGRA 画像の 1 行当たりのバイト数。</param>
             <param name="qualityFactor">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgra"/> が null です。</exception>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。または <paramref name="qualityFactor"/> は 0 以上 100 以下でなくてはなりません。</exception>
             <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessRGB(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            RGB 画像データをロスレスWebP 画像にエンコードします。
+            </summary>
+            <param name="rgb">エンコードする RGB 画像データ。</param>
+            <param name="width">エンコードする RGB 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする RGB 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする RGB 画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessBGR(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            BGR 画像データをロスレスWebP 画像にエンコードします。
+            </summary>
+            <param name="bgr">エンコードする BGR 画像データ。</param>
+            <param name="width">エンコードする BGR 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする BGR 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする BGR 画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgr"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessRGBA(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            RGBA 画像データをロスレスWebP 画像にエンコードします。
+            </summary>
+            <param name="rgba">エンコードする RGBA 画像データ。</param>
+            <param name="width">エンコードする RGBA 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする RGBA 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする RGBA 画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgba"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessBGRA(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            BGRA 画像データをロスレスWebP 画像にエンコードします。
+            </summary>
+            <param name="bgra">エンコードする BGRA 画像データ。</param>
+            <param name="width">エンコードする BGRA 画像のピクセル単位の幅。</param>
+            <param name="height">エンコードする BGRA 画像のピクセル単位の高さ。</param>
+            <param name="stride">エンコードする BGRA 画像の 1 行当たりのバイト数。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgra"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>、<paramref name="height"/>、<paramref name="stride"/>　は 0 より大きくなくてはなりません。</exception>
+            <returns>新しい <see cref="T:WebPDotNet.EncodedImage"/>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPConfigPreset(WebPDotNet.WebPConfig,WebPDotNet.WebPPreset,System.Single)">
+            <summary>
+            定義済みのパラメータ セットと所定の品質係数に従って設定を初期化します。
+            </summary>
+            <param name="config">初期化する圧縮パラメータ。</param>
+            <param name="preset"><see cref="T:WebPDotNet.WebPConfig"/> に対する事前に定義された設定。</param>
+            <param name="quality">圧縮時の損失と品質を制御する値。0 から 100 の範囲です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns><paramref name="config"/> にエラーがない場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPConfigLosslessPreset(WebPDotNet.WebPConfig,System.Int32)">
+            <summary>
+            希望する効率レベルでロスレス圧縮モードを有効にします。
+            </summary>
+            <param name="config">有効にする圧縮パラメータ。</param>
+            <param name="level">希望する効率レベル。0 から 9 の範囲です。0 が最も速く、9 が最も遅くなります。良好な既定のレベルは 6 です。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> が null です。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 9 以下でなくてはなりません。</exception>
+            <returns><paramref name="config"/> にエラーがない場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPValidateConfig(WebPDotNet.WebPConfig)">
+            <summary>
+            指定された設定にエラーがないかどうかを検証します。
+            </summary>
+            <param name="config">検証する圧縮パラメータ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> が null です。</exception>
+            <returns><paramref name="config"/> にエラーがない場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="T:WebPDotNet.WebPConfig">
+            <summary>
+            圧縮パラメータを定義します。このクラスは継承できません。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPConfig.#ctor">
+            <summary>
+            <see cref="T:WebPDotNet.WebPConfig"/> クラスの新しいインスタンスを初期化します。.
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaCompression">
+            <summary>
+            アルファ プレーンをエンコードするアルゴリズムを取得または設定します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.AlphaCompression"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaFiltering">
+            <summary>
+            アルファ プレーンに対する、予測フィルタリングのメソッドを取得または設定します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.AlphaFiltering"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaQuality">
+            <summary>
+            アルファ圧縮の値を 0 から 100 の間で取得または設定します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>0 から 100 のアルファ圧縮の値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AutoFilter">
+            <summary>
+            フィルターの強度を自動調整するかどうかを示す値を取得または設定します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>フィルターの強度を自動調整する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.EmulateJpegSize">
+            <summary>
+            JPEG 圧縮で期待される出力サイズに合わせて、圧縮パラメータを再マッピングするかどうか示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>JPEG 圧縮で期待される出力サイズに合わせて、圧縮パラメータを再マッピングする場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Exact">
+            <summary>
+            透過領域の下で正確な RGB 値を保持するかどうかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>透過領域の下で正確な RGB 値を保持する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterSharpness">
+            <summary>
+            シャープネス フィルターの値を 0 から 7 の間の値で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 7 以下でなくてはなりません。</exception>
+            <returns>シャープネス フィルターの値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterStrength">
+            <summary>
+            フィルターの強さを 0 から 100 の間の値で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>フィルターの強さ。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterType">
+            <summary>
+            フィルターの種別を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.FilterType"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ImageHint">
+            <summary>
+            画像の種別に対するヒント値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns><see cref="T:WebPDotNet.WebPImageHint"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Lossless">
+            <summary>
+            ロスレス エンコーディングを使用するかどうかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>ロスレス エンコーディングを使用する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.LowMemory">
+            <summary>
+            メモリ使用量を削減 (CPU 使用量は増加) するかどうかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>メモリ使用量を削減する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Method">
+            <summary>
+            画質と速度のトレードオフの値を0～6の間で設定または取得します。0 が速く、6 は遅く品質が良好です。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 6 以下でなくてはなりません。</exception>
+            <returns>画質と速度のトレードオフの値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.NearLossless">
+            <summary>
+            ニアロスレス エンコーディングの値を 0 (最大ロス) から 100 (オフ) の間で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>0 (最大ロス) から 100 (オフ) の間のニアロスレス エンコーディングの値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.PartitionLimit">
+            <summary>
+            予測モードコーディングの 512k 制限に合わせるために許容される品質劣化の値を設定または取得します (0：劣化なし、100：最大可能な劣化)。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>予測モードコーディングの 512k 制限に合わせるために許容される品質劣化の値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Partitions">
+            <summary>
+            log2 (トークンの分割数) を 0 から 3 の範囲で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 3 以下でなくてはなりません。</exception>
+            <returns>0 から 3 の範囲のlog2 (トークンの分割数)。プログレッシブ デコードを容易にするために、既定で 0 に設定されています。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Pass">
+            <summary>
+            エントロピー解析のパス数を 1 から 10 の間で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 1 以上 10 以下でなくてはなりません。</exception>
+            <returns>1 から 10 の間のエントロピー解析のパス数。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Preprocessing">
+            <summary>
+            前処理フィルターの値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns><see cref="T:WebPDotNet.PreprocessingFilter"/>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.QMax">
+            <summary>
+            最大許容品質係数の値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>最大許容品質係数の値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.QMin">
+            <summary>
+            最小許容品質係数の値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上でなくてはなりません。</exception>
+            <returns>最小許容品質係数の値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Quality">
+            <summary>
+            品質の値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>品質の値。非可逆圧縮の場合、0 は最小、100 は最大のサイズになります。ロスレスの場合、このパラメータは、圧縮にかける労力の大きさを表します。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Segments">
+            <summary>
+            使用するセグメントの最大数 (1 から 4) を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 1 以上 4 以下でなくてはなりません。</exception>
+            <returns>使用するセグメントの最大数 (1 から 4)。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ShowCompressed">
+            <summary>
+            圧縮された画像を戻すかどうか示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>圧縮された画像を戻す場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.SpatialNoiseShapingStrength">
+            <summary>
+            Spatial Noise Shaping の値を 0 から 100 の間で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 100 以下でなくてはなりません。</exception>
+            <returns>Spatial Noise Shaping の値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.TargetPSNR">
+            <summary>
+            歪みを最小限にしようとする値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上でなくてはなりません。</exception>
+            <returns>歪みを最小限にしようとする値。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.TargetSize">
+            <summary>
+            圧縮された出力に到達しようとする目標サイズをバイト単位で設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上でなくてはなりません。</exception>
+            <returns>圧縮された出力に到達しようとする、バイト単位の目標サイズ。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ThreadLevel">
+            <summary>
+            マルチスレッド エンコーディングを使用するかどうかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>マルチスレッド エンコーディングを使用する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.UseDeltaPalette">
+            <summary>
+            将来のロスレス機能のために予約された値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>将来のロスレス機能のために予約された値を使用する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.UseSharpYUV">
+            <summary>
+            シャープな (そして遅い) RGB から YUV への変換を使用するかどうかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>シャープな (そして遅い) RGB から YUV への変換を使用する場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPConfig.DisposeUnmanaged">
+            <summary>
+            アンマネージ リソースを解放します。
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.WebPImageHint">
+            <summary>
+            下位エンコーダの画像特性のヒントを指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Default">
+            <summary>
+            既定のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Picture">
+            <summary>
+            ポートレートやインナー ショットなど、デジタル写真のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Photo">
+            <summary>
+            自然光での屋外撮影を想定したプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Graph">
+            <summary>
+            ディスクリート・トーン・イメージ (グラフ、マップ・タイルなど) のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Last">
+            <summary>
+            プリセットが指定されていないことを示します。
+            </summary>
         </member>
         <member name="T:WebPDotNet.WebPObject">
             <summary>
@@ -322,6 +807,41 @@
             この <see cref="T:WebPDotNet.WebPObject"/> によって使用されている全てのリソースを解放します。
             </summary>
             <param name="disposing"><see cref="M:System.IDisposable.Dispose"/> メソッドが呼ばれたかどうかを示す値。</param>
+        </member>
+        <member name="T:WebPDotNet.WebPPreset">
+            <summary>
+            入力写真の種類に応じる、<see cref="T:WebPDotNet.WebPConfig"/> の定義済みの設定を指定します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Default">
+            <summary>
+            既定のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Picture">
+            <summary>
+            ポートレートやインナー ショットなど、デジタル写真のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Photo">
+            <summary>
+            自然光での屋外撮影を想定したプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Drawing">
+            <summary>
+            高コントラストのディテールを持つ、手描きまたは線画用のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Icon">
+            <summary>
+            小さいサイズのカラフルな画像のプリセットであることを示します。
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Text">
+            <summary>
+            テキスト風のプリセットトであることを示します。
+            </summary>
         </member>
     </members>
 </doc>

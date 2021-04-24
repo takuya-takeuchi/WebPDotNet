@@ -99,7 +99,7 @@ DLLEXPORT const bool webp_WebPGetInfo(const uint8_t* data,
                                       int32_t* width,
                                       int32_t* height)
 {
-    return ::WebPGetInfo(data, data_size, width, height) == 1;
+    return ::WebPGetInfo(data, data_size, width, height) != 0;
 }
 
 #endif // _CPP_WEBP_DECODE_H_

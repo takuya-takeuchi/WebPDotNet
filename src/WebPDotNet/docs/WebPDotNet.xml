@@ -4,9 +4,44 @@
         <name>WebPDotNet</name>
     </assembly>
     <members>
+        <member name="T:WebPDotNet.AlphaCompression">
+            <summary>
+            Specifies the algorithm for encoding the alpha plane.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaCompression.None">
+            <summary>
+            Specifies that the alpha plane is not compressed.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaCompression.CompressedWithWebP">
+            <summary>
+            Specifies that the alpha plane is compressed with WebP lossless.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.AlphaFiltering">
+            <summary>
+            Specifies the predictive filtering method for alpha plane.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.None">
+            <summary>
+            Specifies that the predictive filtering method is not used.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.Fast">
+            <summary>
+            Specifies that the fast method is used.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.AlphaFiltering.Best">
+            <summary>
+            Specifies that the best method is used.
+            </summary>
+        </member>
         <member name="T:WebPDotNet.CspMode">
             <summary>
-            Specifies the Colorspaces.
+            Specifies the color spaces.
             </summary>
         </member>
         <member name="F:WebPDotNet.CspMode.RGB">
@@ -84,6 +119,13 @@
             Defines the decoded image. This class cannot be inherited.
             </summary>
         </member>
+        <member name="P:WebPDotNet.DecodedImage.Channel">
+            <summary>
+            Gets the number of channel, of this <see cref="T:WebPDotNet.DecodedImage"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>The number of channel, of this <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
         <member name="P:WebPDotNet.DecodedImage.Colorspace">
             <summary>
             Gets a colorspace of this <see cref="T:WebPDotNet.DecodedImage"/>.
@@ -104,6 +146,13 @@
             </summary>
             <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
             <returns>The width, in pixels, of this <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.DecodedImage.ToArray">
+            <summary>
+            Writes the <see cref="T:WebPDotNet.DecodedImage"/> contents to a byte array.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns>A new byte array.</returns>
         </member>
         <member name="M:WebPDotNet.DecodedImage.DisposeUnmanaged">
             <summary>
@@ -132,6 +181,41 @@
         <member name="M:WebPDotNet.EncodedImage.DisposeUnmanaged">
             <summary>
             Releases all unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.FilterType">
+            <summary>
+            Specifies the filtering type.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.FilterType.Simple">
+            <summary>
+            Specifies that the filtering type is simple.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.FilterType.Strong">
+            <summary>
+            Specifies that the filtering type is strong.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.PreprocessingFilter">
+            <summary>
+            Specifies the preprocessing filter.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.None">
+            <summary>
+            Specifies that the preprocessing filter is not used.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.SegmentSmooth">
+            <summary>
+            Specifies that the segment-smooth is used.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.PreprocessingFilter.PseudoRandomDithering">
+            <summary>
+            Specifies that the pseudo-random dithering is used.
             </summary>
         </member>
         <member name="T:WebPDotNet.WebP">
@@ -191,6 +275,66 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
             <returns>A new <see cref="T:WebPDotNet.DecodedImage"/>.</returns>
         </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Decodes WebP image data into 8-bit unsigned integer array as RGB image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="output">The array to copy to.</param>
+            <param name="stride">The stride, in bytes, of the decoded image.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> or <paramref name="output"/> is null.</exception>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeRGBAInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Decodes WebP image data into 8-bit unsigned integer array as RGBA image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="output">The array to copy to.</param>
+            <param name="stride">The stride, in bytes, of the decoded image.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> or <paramref name="output"/> is null.</exception>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeARGBInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Decodes WebP image data into 8-bit unsigned integer array as ARGB image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="output">The array to copy to.</param>
+            <param name="stride">The stride, in bytes, of the decoded image.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> or <paramref name="output"/> is null.</exception>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Decodes WebP image data into 8-bit unsigned integer array as BGR image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="output">The array to copy to.</param>
+            <param name="stride">The stride, in bytes, of the decoded image.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> or <paramref name="output"/> is null.</exception>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPDecodeBGRAInto(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Decodes WebP image data into 8-bit unsigned integer array as BGRA image.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="output">The array to copy to.</param>
+            <param name="stride">The stride, in bytes, of the decoded image.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> or <paramref name="output"/> is null.</exception>
+            <returns><code>true</code> if decode succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPGetInfo(System.Byte[],System.Int32@,System.Int32@)">
+            <summary>
+            Validate the WebP image data and retrieve the image width and height.
+            </summary>
+            <param name="data">The WebP image data to decode.</param>
+            <param name="width">When this method returns, contains the width, in pixels, of WebP image, if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
+            <param name="height">When this method returns, contains the height, in pixels, of WebP image, if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="data"/> is null.</exception>
+            <returns><code>true</code> if <paramref name="data"/> is WebP image; otherwise, <code>false</code>.</returns>
+        </member>
         <member name="M:WebPDotNet.WebP.WebPGetEncoderVersion">
             <summary>
             Return the encoder's version number.
@@ -248,6 +392,346 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="bgra"/> is null.</exception>
             <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0. Or <paramref name="qualityFactor"/> must be from 0 to 100.</exception>
             <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessRGB(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Encodes RGB image data to lossless WebP image.
+            </summary>
+            <param name="rgb">The RGB image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw RGB image to encode.</param>
+            <param name="height">The height, in pixels, of the raw RGB image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw RGB image to encode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgb"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessBGR(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Encodes BGR image data to lossless WebP image.
+            </summary>
+            <param name="bgr">The BGR image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw BGR image to encode.</param>
+            <param name="height">The height, in pixels, of the raw BGR image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw BGR image to encode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgr"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessRGBA(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Encodes RGBA image data to lossless WebP image.
+            </summary>
+            <param name="rgba">The RGBA image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw RGBA image to encode.</param>
+            <param name="height">The height, in pixels, of the raw RGBA image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw RGBA image to encode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="rgba"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPEncodeLosslessBGRA(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Encodes BGRA image data to lossless WebP image.
+            </summary>
+            <param name="bgra">The BGRA image data to encode.</param>
+            <param name="width">The width, in pixels, of the raw BGRA image to encode.</param>
+            <param name="height">The height, in pixels, of the raw BGRA image to encode.</param>
+            <param name="stride">The stride, in bytes, of the raw BGRA image to encode.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="bgra"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="width"/>, <paramref name="height"/> and <paramref name="stride"/> must be more than 0.</exception>
+            <returns>A new <see cref="T:WebPDotNet.EncodedImage"/>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPConfigPreset(WebPDotNet.WebPConfig,WebPDotNet.WebPPreset,System.Single)">
+            <summary>
+            Initialize the configuration according to a predefined set of parameters and a given quality factor.
+            </summary>
+            <param name="config">The compression parameters to initialize.</param>
+            <param name="preset">The predefined settings for <see cref="T:WebPDotNet.WebPConfig"/>.</param>
+            <param name="quality">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="quality"/> must be from 0 to 100.</exception>
+            <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPConfigLosslessPreset(WebPDotNet.WebPConfig,System.Int32)">
+            <summary>
+            Activate the lossless compression mode with the desired efficiency level.
+            </summary>
+            <param name="config">The compression parameters to activate.</param>
+            <param name="level">The desired efficiency level. It ranges from 0 to 9. 0 is fastest and 9 is slower. A good default level is 6.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="level"/> must be from 0 to 9.</exception>
+            <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPValidateConfig(WebPDotNet.WebPConfig)">
+            <summary>
+            Validates whether specified configuration has no error or not.
+            </summary>
+            <param name="config">The compression parameters to validate.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="config"/> is null.</exception>
+            <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="T:WebPDotNet.WebPConfig">
+            <summary>
+            Defines the compression parameters. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPConfig.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebPDotNet.WebPConfig"/> class.
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaCompression">
+            <summary>
+            Sets or get the algorithm for encoding the alpha plane.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.AlphaCompression"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaFiltering">
+            <summary>
+            Sets or get the predictive filtering method for alpha plane.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.AlphaFiltering"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AlphaQuality">
+            <summary>
+            Sets or get the value for alpha compression between 0 and 100.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value for alpha compression between 0 and 100.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.AutoFilter">
+            <summary>
+            Sets or get the value indicating whether using auto adjust filter's strength.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using auto adjust filter's strength; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.EmulateJpegSize">
+            <summary>
+            Sets or get the value indicating whether compression parameters will be remapped to better match the expected output size from JPEG compression.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if compression parameters will be remapped to better match the expected output size from JPEG compression; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Exact">
+            <summary>
+            Sets or get the value indicating whether preserve the exact RGB values under transparent area.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if preserve the exact RGB values under transparent area, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterSharpness">
+            <summary>
+            Sets or get the value for sharpness filter between 0 and 7.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 7.</exception>
+            <returns>The value for sharpness filter.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterStrength">
+            <summary>
+            Sets or get the value for strength of filter between 0 and 100.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The strength of filter.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.FilterType">
+            <summary>
+            Sets or get the value for filter type.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><see cref="P:WebPDotNet.WebPConfig.FilterType"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ImageHint">
+            <summary>
+            Sets or get the value of hint for image type.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><see cref="T:WebPDotNet.WebPImageHint"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Lossless">
+            <summary>
+            Sets or get the value indicating whether using lossless encoding.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using lossless encoding, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.LowMemory">
+            <summary>
+            Sets or get the value indicating whether reduce memory usage (but increase CPU use).
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if reduce memory usage, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Method">
+            <summary>
+            Sets or get the value for quality/speed trade-off between 0 and 6. 0 is fast and 6 is slower-better.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 6.</exception>
+            <returns>The value for quality/speed trade-off.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.NearLossless">
+            <summary>
+            Sets or get the value of near lossless encoding between 0 (max-loss) and 100 (off).
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value of near lossless encoding between 0 (max-loss) and 100 (off).</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.PartitionLimit">
+            <summary>
+            Sets or get the value of quality degradation allowed to fit the 512k limit on prediction modes coding (0: no degradation, 100: maximum possible degradation).
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value of quality degradation allowed to fit the 512k limit on prediction modes coding.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Partitions">
+            <summary>
+            Sets or get the log2 (number of token partitions) in from 0 to 3.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 3.</exception>
+            <returns>The log2 (number of token partitions) in from 0 to 3. Default is set to 0 for easier progressive decoding.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Pass">
+            <summary>
+            Sets or get the number of entropy-analysis passes between 1 to 10.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 1 to 10.</exception>
+            <returns>The number of entropy-analysis passes between 1 to 10.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Preprocessing">
+            <summary>
+            Sets or get the value of preprocessing filter.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><see cref="T:WebPDotNet.PreprocessingFilter"/>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.QMax">
+            <summary>
+            Sets or get the value of maximum permissible quality factor.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value of maximum permissible quality factor.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.QMin">
+            <summary>
+            Sets or get the value of minimum permissible quality factor.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be greater than or equal to zero.</exception>
+            <returns>The value of minimum permissible quality factor.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Quality">
+            <summary>
+            Sets or get the value of quality.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value of quality. For lossy, 0 gives the smallest size and 100 the largest. For lossless, this parameter is the amount of effort put into the compression: 0 is the fastest but gives larger files compared to the slowest, but best, 100.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.Segments">
+            <summary>
+            Sets or get the maximum number of segments to use, from 1 to 4.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 1 to 4.</exception>
+            <returns>The maximum number of segments to use, from 1 to 4.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ShowCompressed">
+            <summary>
+            Sets or get the value indicating whether exports compressed picture back.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if exports compressed picture back, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.SpatialNoiseShapingStrength">
+            <summary>
+            Sets or get the value of Spatial Noise Shaping between 0 and 100.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to 100.</exception>
+            <returns>The value of Spatial Noise Shaping.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.TargetPSNR">
+            <summary>
+            Sets or get the value to try to achieve minimal distortion.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be greater than or equal to zero.</exception>
+            <returns>The value to try to achieve minimal distortion.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.TargetSize">
+            <summary>
+            Sets or get the target size, in bytes, to try and reach for the compressed output.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be greater than or equal to zero.</exception>
+            <returns>The target size, in bytes, to try and reach for the compressed output.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.ThreadLevel">
+            <summary>
+            Sets or get the value indicating whether use multi-threaded encoding.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using multi-threaded encoding; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.UseDeltaPalette">
+            <summary>
+            Sets or get the value for reserved for future lossless feature.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using reserved for future lossless feature; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPConfig.UseSharpYUV">
+            <summary>
+            Sets or get the value indicating whether using sharp (and slow) RGB->YUV conversion.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using sharp (and slow) RGB->YUV conversion; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPConfig.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:WebPDotNet.WebPImageHint">
+            <summary>
+            Specifies the image characteristics hint for the underlying encoder.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Default">
+            <summary>
+            Specifies that the default preset.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Picture">
+            <summary>
+            Specifies that the preset for digital picture, like portrait, inner shot.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Photo">
+            <summary>
+            Specifies that the preset for outdoor photograph, with natural lighting.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Graph">
+            <summary>
+            Specifies that the preset for discrete tone image (graph, map-tile etc).
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPImageHint.Last">
+            <summary>
+            Specifies that the preset is not specified.
+            </summary>
         </member>
         <member name="T:WebPDotNet.WebPObject">
             <summary>
@@ -322,6 +806,41 @@
             Releases all resources used by this <see cref="T:WebPDotNet.WebPObject"/>.
             </summary>
             <param name="disposing">Indicate value whether <see cref="M:System.IDisposable.Dispose"/> method was called.</param>
+        </member>
+        <member name="T:WebPDotNet.WebPPreset">
+            <summary>
+            Specifies the predefined settings for <see cref="T:WebPDotNet.WebPConfig"/>, depending on the type of source picture.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Default">
+            <summary>
+            Specifies that the default preset.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Picture">
+            <summary>
+            Specifies that the preset for digital picture, like portrait, inner shot.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Photo">
+            <summary>
+            Specifies that the preset for outdoor photograph, with natural lighting.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Drawing">
+            <summary>
+            Specifies that the preset for hand or line drawing, with high-contrast details.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Icon">
+            <summary>
+            Specifies that the preset for small-sized colorful images.
+            </summary>
+        </member>
+        <member name="F:WebPDotNet.WebPPreset.Text">
+            <summary>
+            Specifies that the preset for text-like.
+            </summary>
         </member>
     </members>
 </doc>

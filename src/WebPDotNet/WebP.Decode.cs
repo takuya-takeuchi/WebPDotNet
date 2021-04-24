@@ -258,8 +258,8 @@ namespace WebPDotNet
         /// Validate the WebP image data and retrieve the image width and height.
         /// </summary>
         /// <param name="data">The WebP image data to decode.</param>
-        /// <param name="width">When this method returns, contains the width, in pixels, of WebP image., if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
-        /// <param name="height">When this method returns, contains the height, in pixels, of WebP image., if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
+        /// <param name="width">When this method returns, contains the width, in pixels, of WebP image, if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
+        /// <param name="height">When this method returns, contains the height, in pixels, of WebP image, if <paramref name="data"/> is WebP image; otherwise, <code>0</code>. This parameter is passed uninitialized.</param>
         /// <exception cref="ArgumentNullException"><paramref name="data"/> is null.</exception>
         /// <returns><code>true</code> if <paramref name="data"/> is WebP image; otherwise, <code>false</code>.</returns>
         public static bool WebPGetInfo(byte[] data, out int width, out int height)

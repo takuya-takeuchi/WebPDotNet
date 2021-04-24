@@ -2,7 +2,7 @@ namespace WebPDotNet
 {
     
     /// <summary>
-    /// Specifies the Colorspaces.
+    /// Specifies the color spaces.
     /// </summary>
     public enum CspMode
     {

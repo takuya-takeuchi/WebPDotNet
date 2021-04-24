@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebpDotNet\WebpDotNet.csproj" />
+    <ProjectReference Include="..\..\src\WebPDotNet\WebPDotNet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

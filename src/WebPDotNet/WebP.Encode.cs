@@ -45,7 +45,7 @@ namespace WebPDotNet
             if (!(stride > 0))
                 throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
             if (!(0 <= qualityFactor && qualityFactor <= 100))
-                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(qualityFactor)} must be from 0 to 100.");
+                throw new ArgumentOutOfRangeException(nameof(qualityFactor), $"{nameof(qualityFactor)} must be from 0 to 100.");
 
             unsafe
             {
@@ -83,7 +83,7 @@ namespace WebPDotNet
             if (!(stride > 0))
                 throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
             if (!(0 <= qualityFactor && qualityFactor <= 100))
-                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(qualityFactor)} must be from 0 to 100.");
+                throw new ArgumentOutOfRangeException(nameof(qualityFactor), $"{nameof(qualityFactor)} must be from 0 to 100.");
 
             unsafe
             {
@@ -121,7 +121,7 @@ namespace WebPDotNet
             if (!(stride > 0))
                 throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
             if (!(0 <= qualityFactor && qualityFactor <= 100))
-                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(qualityFactor)} must be from 0 to 100.");
+                throw new ArgumentOutOfRangeException(nameof(qualityFactor), $"{nameof(qualityFactor)} must be from 0 to 100.");
 
             unsafe
             {
@@ -159,7 +159,7 @@ namespace WebPDotNet
             if (!(stride > 0))
                 throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(stride)} must be more than 0.");
             if (!(0 <= qualityFactor && qualityFactor <= 100))
-                throw new ArgumentOutOfRangeException(nameof(stride), $"{nameof(qualityFactor)} must be from 0 to 100.");
+                throw new ArgumentOutOfRangeException(nameof(qualityFactor), $"{nameof(qualityFactor)} must be from 0 to 100.");
 
             unsafe
             {
@@ -305,6 +305,57 @@ namespace WebPDotNet
                     return new EncodedImage(output, (int)size);
                 }
             }
+        }
+
+        /// <summary>
+        /// Initialize the configuration according to a predefined set of parameters and a given quality factor.
+        /// </summary>
+        /// <param name="config">The compression parameters to initialize.</param>
+        /// <param name="preset">The predefined settings for <see cref="WebPConfig"/>.</param>
+        /// <param name="quality">The value to control the loss and quality during compression. It ranges from 0 to 100.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="config"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="quality"/> must be from 0 to 100.</exception>
+        /// <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        public static bool WebPConfigPreset(WebPConfig config, WebPPreset preset, float quality)
+        {
+            if (config == null)
+                throw new ArgumentNullException(nameof(config));
+            if (!(0 <= quality && quality <= 100))
+                throw new ArgumentOutOfRangeException(nameof(quality), $"{nameof(quality)} must be from 0 to 100.");
+
+            return NativeMethods.webp_WebPConfigPreset(config.NativePtr, preset, quality);
+        }
+
+        /// <summary>
+        /// Activate the lossless compression mode with the desired efficiency level.
+        /// </summary>
+        /// <param name="config">The compression parameters to activate.</param>
+        /// <param name="level">The desired efficiency level. It ranges from 0 to 9. 0 is fastest and 9 is slower. A good default level is 6.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="config"/> is null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="level"/> must be from 0 to 9.</exception>
+        /// <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        public static bool WebPConfigLosslessPreset(WebPConfig config, int level)
+        {
+            if (config == null)
+                throw new ArgumentNullException(nameof(config));
+            if (!(0 <= level && level <= 9))
+                throw new ArgumentOutOfRangeException(nameof(level), $"{nameof(level)} must be from 0 to 9.");
+
+            return NativeMethods.webp_WebPConfigLosslessPreset(config.NativePtr, level);
+        }
+
+        /// <summary>
+        /// Validates whether specified configuration has no error or not.
+        /// </summary>
+        /// <param name="config">The compression parameters to validate.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="config"/> is null.</exception>
+        /// <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        public static bool WebPValidateConfig(WebPConfig config)
+        {
+            if (config == null)
+                throw new ArgumentNullException(nameof(config));
+
+            return NativeMethods.webp_WebPValidateConfig(config.NativePtr);
         }
 
     }

@@ -84,6 +84,204 @@ namespace WebPDotNet
                                                                 int32_t stride,
                                                                 out IntPtr output);
 
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPConfigPreset(IntPtr config,
+                                                        WebPPreset preset,
+                                                        float quality);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPConfigLosslessPreset(IntPtr config, int32_t level);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPValidateConfig(IntPtr config);
+
+        #region WebPConfig
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPConfig_new();
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_delete(IntPtr config);
+        
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_lossless(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_lossless(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern float webp_WebPConfig_get_quality(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_quality(IntPtr config, float value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_method(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_method(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern WebPImageHint webp_WebPConfig_get_image_hint(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_image_hint(IntPtr config, WebPImageHint value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_target_size(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_target_size(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern float webp_WebPConfig_get_target_PSNR(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_target_PSNR(IntPtr config, float value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_segments(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_segments(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_sns_strength(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_sns_strength(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_filter_strength(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_filter_strength(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_filter_sharpness(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_filter_sharpness(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_filter_type(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_filter_type(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_autofilter(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_autofilter(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_alpha_compression(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_alpha_compression(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_alpha_filtering(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_alpha_filtering(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_alpha_quality(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_alpha_quality(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_pass(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_pass(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_show_compressed(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_show_compressed(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_preprocessing(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_preprocessing(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_partitions(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_partitions(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_partition_limit(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_partition_limit(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_emulate_jpeg_size(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_emulate_jpeg_size(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_thread_level(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_thread_level(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_low_memory(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_low_memory(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_near_lossless(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_near_lossless(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_exact(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_exact(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_use_delta_palette(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_use_delta_palette(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_use_sharp_yuv(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_use_sharp_yuv(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_qmin(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_qmin(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPConfig_get_qmax(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPConfig_set_qmax(IntPtr config, int32_t value);
+
+        #endregion 
+
         #endregion
 
     }

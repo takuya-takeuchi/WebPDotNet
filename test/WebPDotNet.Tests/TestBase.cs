@@ -10,7 +10,7 @@ namespace WebPDotNet.Tests
 
         #region Methods
 
-        public void DisposeAndCheckDisposedState(WebPObject obj)
+        protected void DisposeAndCheckDisposedState(WebPObject obj)
         {
             if (obj == null)
                 return;
@@ -20,10 +20,34 @@ namespace WebPDotNet.Tests
             Assert.True(obj.NativePtr == IntPtr.Zero);
         }
 
-        public void DisposeAndCheckDisposedStates(IEnumerable<WebPObject> objs)
+        protected void DisposeAndCheckDisposedStates(IEnumerable<WebPObject> objs)
         {
             foreach (var obj in objs)
                 this.DisposeAndCheckDisposedState(obj);
+        }
+
+        protected static void CheckArgumentNullException(Action action, string methodName, string parameterName)
+        {
+            try
+            {
+                action.Invoke();
+                Assert.False(true, $"{methodName} should throw {nameof(ArgumentNullException)} for {parameterName} parameter");
+            }
+            catch (ArgumentNullException)
+            {
+            }
+        }
+
+        protected static void CheckArgumentOutOfRangeException(Action action, string methodName, string parameterName)
+        {
+            try
+            {
+                action.Invoke();
+                Assert.False(true, $"{methodName} should throw {nameof(ArgumentOutOfRangeException)} for {parameterName} parameter");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
         }
 
         #endregion

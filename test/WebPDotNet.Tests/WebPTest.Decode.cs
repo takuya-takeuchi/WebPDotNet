@@ -7,7 +7,7 @@ using Xunit;
 namespace WebPDotNet.Tests
 {
 
-    public sealed partial class WebPTest : TestBase
+    public sealed partial class WebPTest
     {
 
         [Fact]
@@ -31,15 +31,8 @@ namespace WebPDotNet.Tests
             Assert.Equal(width, decodedImage.Width);
             Assert.Equal(height, decodedImage.Height);
             Assert.Equal(colorspace, decodedImage.Colorspace);
-
-            try
-            {
-                WebP.WebPDecodeARGB(null);
-                Assert.False(true, $"{nameof(WebPDecodeARGB)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            
+            CheckArgumentNullException(() => WebP.WebPDecodeARGB(null), nameof(WebP.WebPDecodeARGB), "data");
 
             this.DisposeAndCheckDisposedState(decodedImage);
         }
@@ -56,16 +49,9 @@ namespace WebPDotNet.Tests
             Assert.Equal(width, decodedImage.Width);
             Assert.Equal(height, decodedImage.Height);
             Assert.Equal(colorspace, decodedImage.Colorspace);
-
-            try
-            {
-                WebP.WebPDecodeRGB(null);
-                Assert.False(true, $"{nameof(WebPDecodeRGB)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
             
+            CheckArgumentNullException(() => WebP.WebPDecodeRGB(null), nameof(WebP.WebPDecodeRGB), "data");
+
             this.DisposeAndCheckDisposedState(decodedImage);
         }
 
@@ -81,15 +67,8 @@ namespace WebPDotNet.Tests
             Assert.Equal(width, decodedImage.Width);
             Assert.Equal(height, decodedImage.Height);
             Assert.Equal(colorspace, decodedImage.Colorspace);
-
-            try
-            {
-                WebP.WebPDecodeBGRA(null);
-                Assert.False(true, $"{nameof(WebPDecodeBGRA)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            
+            CheckArgumentNullException(() => WebP.WebPDecodeBGRA(null), nameof(WebP.WebPDecodeBGRA), "data");
 
             this.DisposeAndCheckDisposedState(decodedImage);
         }
@@ -106,16 +85,9 @@ namespace WebPDotNet.Tests
             Assert.Equal(width, decodedImage.Width);
             Assert.Equal(height, decodedImage.Height);
             Assert.Equal(colorspace, decodedImage.Colorspace);
-
-            try
-            {
-                WebP.WebPDecodeBGR(null);
-                Assert.False(true, $"{nameof(WebPDecodeBGR)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
             
+            CheckArgumentNullException(() => WebP.WebPDecodeBGR(null), nameof(WebP.WebPDecodeBGR), "data");
+
             this.DisposeAndCheckDisposedState(decodedImage);
         }
 
@@ -142,23 +114,8 @@ namespace WebPDotNet.Tests
             var ret3 = WebP.WebPDecodeRGBInto(webp, output3, stride3);
             Assert.False(ret3);
 
-            try
-            {
-                WebP.WebPDecodeRGBInto(null, output, stride);
-                Assert.False(true, $"{nameof(WebPDecodeRGBInto)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
-
-            try
-            {
-                WebP.WebPDecodeRGBInto(webp, null, stride);
-                Assert.False(true, $"{nameof(WebPDecodeRGBInto)} should throw {nameof(ArgumentNullException)} for output parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            CheckArgumentNullException(() => WebP.WebPDecodeRGBInto(null, output, stride), nameof(WebP.WebPDecodeRGBInto), "data");
+            CheckArgumentNullException(() => WebP.WebPDecodeRGBInto(webp, null, stride), nameof(WebP.WebPDecodeRGBInto), "output");
         }
 
         [Fact]
@@ -184,23 +141,8 @@ namespace WebPDotNet.Tests
             var ret3 = WebP.WebPDecodeARGBInto(webp, output3, stride3);
             Assert.False(ret3);
 
-            try
-            {
-                WebP.WebPDecodeARGBInto(null, output, stride);
-                Assert.False(true, $"{nameof(WebPDecodeARGBInto)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
-
-            try
-            {
-                WebP.WebPDecodeARGBInto(webp, null, stride);
-                Assert.False(true, $"{nameof(WebPDecodeARGBInto)} should throw {nameof(ArgumentNullException)} for output parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            CheckArgumentNullException(() => WebP.WebPDecodeARGBInto(null, output, stride), nameof(WebP.WebPDecodeARGBInto), "data");
+            CheckArgumentNullException(() => WebP.WebPDecodeARGBInto(webp, null, stride), nameof(WebP.WebPDecodeARGBInto), "output");
         }
 
         [Fact]
@@ -226,23 +168,8 @@ namespace WebPDotNet.Tests
             var ret3 = WebP.WebPDecodeRGBAInto(webp, output3, stride3);
             Assert.False(ret3);
 
-            try
-            {
-                WebP.WebPDecodeRGBAInto(null, output, stride);
-                Assert.False(true, $"{nameof(WebPDecodeRGBAInto)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
-
-            try
-            {
-                WebP.WebPDecodeRGBAInto(webp, null, stride);
-                Assert.False(true, $"{nameof(WebPDecodeRGBAInto)} should throw {nameof(ArgumentNullException)} for output parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            CheckArgumentNullException(() => WebP.WebPDecodeRGBAInto(null, output, stride), nameof(WebP.WebPDecodeRGBAInto), "data");
+            CheckArgumentNullException(() => WebP.WebPDecodeRGBAInto(webp, null, stride), nameof(WebP.WebPDecodeRGBAInto), "output");
         }
 
         [Fact]
@@ -268,23 +195,8 @@ namespace WebPDotNet.Tests
             var ret3 = WebP.WebPDecodeBGRInto(webp, output3, stride3);
             Assert.False(ret3);
 
-            try
-            {
-                WebP.WebPDecodeBGRInto(null, output, stride);
-                Assert.False(true, $"{nameof(WebPDecodeBGRInto)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
-
-            try
-            {
-                WebP.WebPDecodeBGRInto(webp, null, stride);
-                Assert.False(true, $"{nameof(WebPDecodeBGRInto)} should throw {nameof(ArgumentNullException)} for output parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            CheckArgumentNullException(() => WebP.WebPDecodeBGRInto(null, output, stride), nameof(WebP.WebPDecodeBGRInto), "data");
+            CheckArgumentNullException(() => WebP.WebPDecodeBGRInto(webp, null, stride), nameof(WebP.WebPDecodeBGRInto), "output");
         }
 
         [Fact]
@@ -310,23 +222,8 @@ namespace WebPDotNet.Tests
             var ret3 = WebP.WebPDecodeBGRAInto(webp, output3, stride3);
             Assert.False(ret3);
 
-            try
-            {
-                WebP.WebPDecodeBGRAInto(null, output, stride);
-                Assert.False(true, $"{nameof(WebPDecodeBGRAInto)} should throw {nameof(ArgumentNullException)} for data parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
-
-            try
-            {
-                WebP.WebPDecodeBGRAInto(webp, null, stride);
-                Assert.False(true, $"{nameof(WebPDecodeBGRAInto)} should throw {nameof(ArgumentNullException)} for output parameter");
-            }
-            catch (ArgumentNullException)
-            {
-            }
+            CheckArgumentNullException(() => WebP.WebPDecodeBGRAInto(null, output, stride), nameof(WebP.WebPDecodeBGRAInto), "data");
+            CheckArgumentNullException(() => WebP.WebPDecodeBGRAInto(webp, null, stride), nameof(WebP.WebPDecodeBGRAInto), "output");
         }
 
         [Fact]

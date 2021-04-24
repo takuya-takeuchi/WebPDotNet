@@ -52,6 +52,13 @@ namespace WebPDotNet
                                                        out int32_t width,
                                                        out int32_t height);
 
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPGetInfo(IntPtr data,
+                                                   size_t data_size,
+                                                   out int32_t width,
+                                                   out int32_t height);
+
         #endregion
 
     }

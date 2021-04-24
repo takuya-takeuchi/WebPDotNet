@@ -82,6 +82,32 @@ namespace WebPDotNet.Tests
             this.DisposeAndCheckDisposedState(decodedImage);
         }
 
+        [Fact]
+        public void WebPGetInfoValid()
+        {
+            const int width = 400;
+            const int height = 301;
+            var webp = ReadData("1_webp_ll.webp");
+
+            var ret = WebP.WebPGetInfo(webp, out var w, out var h);
+            Assert.Equal(width, w);
+            Assert.Equal(height, h);
+            Assert.True(ret);
+        }
+
+        [Fact]
+        public void WebPGetInfoInvalid()
+        {
+            const int width = 0;
+            const int height = 0;
+            var webp = ReadData("1_webp_ll.png");
+
+            var ret = WebP.WebPGetInfo(webp, out var w, out var h);
+            Assert.Equal(width, w);
+            Assert.Equal(height, h);
+            Assert.False(ret);
+        }
+
     }
 
 }

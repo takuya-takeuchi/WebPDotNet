@@ -387,7 +387,7 @@ namespace WebPDotNet
         }
 
         /// <summary>
-        /// Release the memory allocated by <see cref="WebPPictureAlloc"/> or <see cref="WebPPictureImport"/>.
+        /// Release the memory allocated by <see cref="WebPPictureAlloc"/> or WebPPictureImport methods.
         /// </summary>
         /// <param name="picture">The picture to release memory.</param>
         /// <exception cref="ArgumentNullException"><paramref name="picture"/> is null.</exception>

@@ -494,7 +494,7 @@
         </member>
         <member name="M:WebPDotNet.WebP.WebPPictureFree(WebPDotNet.WebPPicture)">
             <summary>
-            <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> または <see cref="!:WebPPictureImport"/> によって割り当てられたメモリを解放します。.
+            <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> または WebPPictureImport メソッドによって割り当てられたメモリを解放します。.
             </summary>
             <param name="picture">メモリを解放するピクチャ。</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> が null です。</exception>

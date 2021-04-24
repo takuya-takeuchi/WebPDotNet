@@ -493,7 +493,7 @@
         </member>
         <member name="M:WebPDotNet.WebP.WebPPictureFree(WebPDotNet.WebPPicture)">
             <summary>
-            Release the memory allocated by <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> or <see cref="!:WebPPictureImport"/>.
+            Release the memory allocated by <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> or WebPPictureImport methods.
             </summary>
             <param name="picture">The picture to release memory.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> is null.</exception>

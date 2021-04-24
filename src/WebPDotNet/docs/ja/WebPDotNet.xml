@@ -223,6 +223,11 @@
             libwebp のメソッドを提供します。
             </summary>
         </member>
+        <member name="F:WebPDotNet.WebP.WebPMaxDimension">
+            <summary>
+             WebP フォーマットで許容される最大の幅または高さ (含む) の値をピクセル単位で表す読み取り専用フィールド。
+            </summary>
+        </member>
         <member name="M:WebPDotNet.WebP.GetNativeVersion">
             <summary>
             libwebp のラッパーライブラリのバージョン表現である文字列を取得します。
@@ -471,6 +476,29 @@
             <exception cref="T:System.ArgumentNullException"><paramref name="config"/> が null です。</exception>
             <returns><paramref name="config"/> にエラーがない場合は <code>true</code>、それ以外 <code>false</code>。</returns>
         </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureInit(WebPDotNet.WebPPicture)">
+            <summary>
+            <see cref="T:WebPDotNet.WebPPicture"/> を初期化します。
+            </summary>
+            <param name="picture">初期化するピクチャ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> が null です。</exception>
+            <returns>初期化が成功した場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)">
+            <summary>
+            <see cref="P:WebPDotNet.WebPPicture.Width"/> と <see cref="P:WebPDotNet.WebPPicture.Height"/> に基づいて、メモリの割り当てまたは割り当てを行います。
+            </summary>
+            <param name="picture">メモリの割り当てまたは割り当ての取り消しを行うピクチャ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> が null です。</exception>
+            <returns>メモリの割り当てまたは割り当てが成功した場合は <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureFree(WebPDotNet.WebPPicture)">
+            <summary>
+            <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> または <see cref="!:WebPPictureImport"/> によって割り当てられたメモリを解放します。.
+            </summary>
+            <param name="picture">メモリを解放するピクチャ。</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> が null です。</exception>
+        </member>
         <member name="T:WebPDotNet.WebPConfig">
             <summary>
             圧縮パラメータを定義します。このクラスは継承できません。
@@ -478,7 +506,7 @@
         </member>
         <member name="M:WebPDotNet.WebPConfig.#ctor">
             <summary>
-            <see cref="T:WebPDotNet.WebPConfig"/> クラスの新しいインスタンスを初期化します。.
+            <see cref="T:WebPDotNet.WebPConfig"/> クラスの新しいインスタンスを初期化します。
             </summary>
         </member>
         <member name="P:WebPDotNet.WebPConfig.AlphaCompression">
@@ -807,6 +835,44 @@
             この <see cref="T:WebPDotNet.WebPObject"/> によって使用されている全てのリソースを解放します。
             </summary>
             <param name="disposing"><see cref="M:System.IDisposable.Dispose"/> メソッドが呼ばれたかどうかを示す値。</param>
+        </member>
+        <member name="T:WebPDotNet.WebPPicture">
+            <summary>
+            入力されたサンプルを RGBA または YUVA フォーマットでラップします。このクラスは継承できません。
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPPicture.#ctor">
+            <summary>
+            <see cref="T:WebPDotNet.WebPPicture"/> クラスの新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.Height">
+            <summary>
+            ピクセル単位の高さを設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 <see cref="F:WebPDotNet.WebP.WebPMaxDimension"/> 以下でなくてはなりません。</exception>
+            <returns>ピクセル単位の高さ。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.UseARGB">
+            <summary>
+            ARGB と YUVA のどちらを使用するかを示す値を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <returns>ARGB を使用する場合 <code>true</code>、それ以外 <code>false</code>。</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.Width">
+            <summary>
+            ピクセル単位の幅を設定または取得します。
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">このオブジェクトは破棄されています。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> は 0 以上 <see cref="F:WebPDotNet.WebP.WebPMaxDimension"/> 以下でなくてはなりません。</exception>
+            <returns>ピクセル単位の幅。</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPPicture.DisposeUnmanaged">
+            <summary>
+            アンマネージ リソースを解放します。
+            </summary>
         </member>
         <member name="T:WebPDotNet.WebPPreset">
             <summary>

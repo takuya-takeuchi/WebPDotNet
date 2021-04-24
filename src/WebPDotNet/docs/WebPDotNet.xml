@@ -223,6 +223,11 @@
             Provides the methods of libwebp.
             </summary>
         </member>
+        <member name="F:WebPDotNet.WebP.WebPMaxDimension">
+            <summary>
+            A read-only field that represents a value of maximum width/height allowed (inclusive), in pixels for WebP format.
+            </summary>
+        </member>
         <member name="M:WebPDotNet.WebP.GetNativeVersion">
             <summary>
             Get the string representation of the version of wrapper library of libwebp.
@@ -469,6 +474,29 @@
             <param name="config">The compression parameters to validate.</param>
             <exception cref="T:System.ArgumentNullException"><paramref name="config"/> is null.</exception>
             <returns><code>true</code> if <paramref name="config"/> has no error; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureInit(WebPDotNet.WebPPicture)">
+            <summary>
+            Initialize the <see cref="T:WebPDotNet.WebPPicture"/>.
+            </summary>
+            <param name="picture">The picture to initialize.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> is null.</exception>
+            <returns><code>true</code> if initialize succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)">
+            <summary>
+            Allocate or deallocate memory based on <see cref="P:WebPDotNet.WebPPicture.Width"/> and <see cref="P:WebPDotNet.WebPPicture.Height"/>.
+            </summary>
+            <param name="picture">The picture to allocate/deallocate memory.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> is null.</exception>
+            <returns><code>true</code> if allocation/deallocation succeeds; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebP.WebPPictureFree(WebPDotNet.WebPPicture)">
+            <summary>
+            Release the memory allocated by <see cref="M:WebPDotNet.WebP.WebPPictureAlloc(WebPDotNet.WebPPicture)"/> or <see cref="!:WebPPictureImport"/>.
+            </summary>
+            <param name="picture">The picture to release memory.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="picture"/> is null.</exception>
         </member>
         <member name="T:WebPDotNet.WebPConfig">
             <summary>
@@ -806,6 +834,44 @@
             Releases all resources used by this <see cref="T:WebPDotNet.WebPObject"/>.
             </summary>
             <param name="disposing">Indicate value whether <see cref="M:System.IDisposable.Dispose"/> method was called.</param>
+        </member>
+        <member name="T:WebPDotNet.WebPPicture">
+            <summary>
+            Wraps input samples in either RGBA or YUVA format. This class cannot be inherited.
+            </summary>
+        </member>
+        <member name="M:WebPDotNet.WebPPicture.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:WebPDotNet.WebPPicture"/> class.
+            </summary>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.Height">
+            <summary>
+            Sets or get the height, in pixels.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to <see cref="F:WebPDotNet.WebP.WebPMaxDimension"/>.</exception>
+            <returns>The height, in pixels.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.UseARGB">
+            <summary>
+            Sets or get the value indicating whether using ARGB or YUVA.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <returns><code>true</code> if using ARGB; otherwise, <code>false</code>.</returns>
+        </member>
+        <member name="P:WebPDotNet.WebPPicture.Width">
+            <summary>
+            Sets or get the width, in pixels.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">This object is disposed.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="value"/> must be from 0 to <see cref="F:WebPDotNet.WebP.WebPMaxDimension"/>.</exception>
+            <returns>The width, in pixels.</returns>
+        </member>
+        <member name="M:WebPDotNet.WebPPicture.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
         </member>
         <member name="T:WebPDotNet.WebPPreset">
             <summary>

@@ -79,6 +79,7 @@ namespace WebPDotNet.Tests
             foreach (var compression in Enum.GetValues(typeof(AlphaCompression)).Cast<AlphaCompression>())
             {
                 config.AlphaCompression = compression;
+                Assert.Equal(compression, config.AlphaCompression);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -96,6 +97,7 @@ namespace WebPDotNet.Tests
             foreach (var filtering in Enum.GetValues(typeof(AlphaFiltering)).Cast<AlphaFiltering>())
             {
                 config.AlphaFiltering = filtering;
+                Assert.Equal(filtering, config.AlphaFiltering);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -113,6 +115,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.AlphaQuality = value;
+                Assert.Equal(value, config.AlphaQuality);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -133,6 +136,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.AutoFilter = value;
+                Assert.Equal(value, config.AutoFilter);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -150,6 +154,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.EmulateJpegSize = value;
+                Assert.Equal(value, config.EmulateJpegSize);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -167,6 +172,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.Exact = value;
+                Assert.Equal(value, config.Exact);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -184,6 +190,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 7 })
             {
                 config.FilterSharpness = value;
+                Assert.Equal(value, config.FilterSharpness);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -204,6 +211,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.FilterStrength = value;
+                Assert.Equal(value, config.FilterStrength);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -224,6 +232,7 @@ namespace WebPDotNet.Tests
             foreach (var type in Enum.GetValues(typeof(FilterType)).Cast<FilterType>())
             {
                 config.FilterType = type;
+                Assert.Equal(type, config.FilterType);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -238,9 +247,10 @@ namespace WebPDotNet.Tests
             Assert.True(WebP.WebPConfigPreset(config, WebPPreset.Default, 0));
             Assert.True(WebP.WebPValidateConfig(config));
 
-            foreach (var imageHint in Enum.GetValues(typeof(WebPImageHint)).Cast<WebPImageHint>().Except(new [] {WebPImageHint.Last}))
+            foreach (var imageHint in Enum.GetValues(typeof(WebPImageHint)).Cast<WebPImageHint>().Except(new[] { WebPImageHint.Last }))
             {
                 config.ImageHint = imageHint;
+                Assert.Equal(imageHint, config.ImageHint);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -261,6 +271,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.Lossless = value;
+                Assert.Equal(value, config.Lossless);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -278,6 +289,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.LowMemory = value;
+                Assert.Equal(value, config.LowMemory);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -295,6 +307,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 6 })
             {
                 config.Method = value;
+                Assert.Equal(value, config.Method);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -303,7 +316,7 @@ namespace WebPDotNet.Tests
 
             this.DisposeAndCheckDisposedState(config);
         }
-        
+
         [Fact]
         public void WebPConfigNearLossless()
         {
@@ -315,6 +328,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.NearLossless = value;
+                Assert.Equal(value, config.NearLossless);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -335,6 +349,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.PartitionLimit = value;
+                Assert.Equal(value, config.PartitionLimit);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -355,6 +370,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 3 })
             {
                 config.Partitions = value;
+                Assert.Equal(value, config.Partitions);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -375,6 +391,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 1, 10 })
             {
                 config.Pass = value;
+                Assert.Equal(value, config.Pass);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -395,6 +412,7 @@ namespace WebPDotNet.Tests
             foreach (var filter in Enum.GetValues(typeof(PreprocessingFilter)).Cast<PreprocessingFilter>())
             {
                 config.Preprocessing = filter;
+                Assert.Equal(filter, config.Preprocessing);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -412,6 +430,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.QMax = value;
+                Assert.Equal(value, config.QMax);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -432,6 +451,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.QMin = value;
+                Assert.Equal(value, config.QMin);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -451,6 +471,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.Quality = value;
+                Assert.Equal(value, config.Quality);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -471,6 +492,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 1, 4 })
             {
                 config.Segments = value;
+                Assert.Equal(value, config.Segments);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -491,6 +513,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.ShowCompressed = value;
+                Assert.Equal(value, config.ShowCompressed);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -508,6 +531,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.SpatialNoiseShapingStrength = value;
+                Assert.Equal(value, config.SpatialNoiseShapingStrength);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -528,6 +552,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.TargetPSNR = value;
+                Assert.Equal(value, config.TargetPSNR);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -547,6 +572,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { 0, 100 })
             {
                 config.TargetSize = value;
+                Assert.Equal(value, config.TargetSize);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -566,6 +592,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.ThreadLevel = value;
+                Assert.Equal(value, config.ThreadLevel);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -583,6 +610,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.UseDeltaPalette = value;
+                Assert.Equal(value, config.UseDeltaPalette);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -600,6 +628,7 @@ namespace WebPDotNet.Tests
             foreach (var value in new[] { false, true })
             {
                 config.UseSharpYUV = value;
+                Assert.Equal(value, config.UseSharpYUV);
                 Assert.True(WebP.WebPValidateConfig(config));
             }
 
@@ -650,7 +679,10 @@ namespace WebPDotNet.Tests
             Assert.True(WebP.WebPPictureInit(picture));
 
             foreach (var value in new[] { 0, WebP.WebPMaxDimension })
+            {
                 picture.Height = value;
+                Assert.Equal(value, picture.Height);
+            }
 
             this.DisposeAndCheckDisposedState(picture);
         }
@@ -663,7 +695,10 @@ namespace WebPDotNet.Tests
             Assert.True(WebP.WebPPictureInit(picture));
 
             foreach (var value in new[] { false, true })
+            {
                 picture.UseARGB = value;
+                Assert.Equal(value, picture.UseARGB);
+            }
 
             this.DisposeAndCheckDisposedState(picture);
         }
@@ -676,7 +711,10 @@ namespace WebPDotNet.Tests
             Assert.True(WebP.WebPPictureInit(picture));
 
             foreach (var value in new[] { 0, WebP.WebPMaxDimension })
+            {
                 picture.Width = value;
+                Assert.Equal(value, picture.Width);
+            }
 
             this.DisposeAndCheckDisposedState(picture);
         }

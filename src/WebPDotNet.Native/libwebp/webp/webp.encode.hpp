@@ -431,7 +431,7 @@ DLLEXPORT const int32_t webp_WebPPicture_get_width(WebPPicture* picture)
 
 DLLEXPORT void webp_WebPPicture_set_width(WebPPicture* picture, const int32_t value)
 {
-    picture->height = value;
+    picture->width = value;
 }
 
 DLLEXPORT const int32_t webp_WebPPicture_get_height(WebPPicture* picture)

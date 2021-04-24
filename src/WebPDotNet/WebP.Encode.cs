@@ -358,6 +358,47 @@ namespace WebPDotNet
             return NativeMethods.webp_WebPValidateConfig(config.NativePtr);
         }
 
+        /// <summary>
+        /// Initialize the <see cref="WebPPicture"/>.
+        /// </summary>
+        /// <param name="picture">The picture to initialize.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="picture"/> is null.</exception>
+        /// <returns><code>true</code> if initialize succeeds; otherwise, <code>false</code>.</returns>
+        public static bool WebPPictureInit(WebPPicture picture)
+        {
+            if (picture == null)
+                throw new ArgumentNullException(nameof(picture));
+
+            return NativeMethods.webp_WebPPictureInit(picture.NativePtr);
+        }
+
+        /// <summary>
+        /// Allocate or deallocate memory based on <see cref="WebPPicture.Width"/> and <see cref="WebPPicture.Height"/>.
+        /// </summary>
+        /// <param name="picture">The picture to allocate/deallocate memory.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="picture"/> is null.</exception>
+        /// <returns><code>true</code> if allocation/deallocation succeeds; otherwise, <code>false</code>.</returns>
+        public static bool WebPPictureAlloc(WebPPicture picture)
+        {
+            if (picture == null)
+                throw new ArgumentNullException(nameof(picture));
+
+            return NativeMethods.webp_WebPPictureAlloc(picture.NativePtr);
+        }
+
+        /// <summary>
+        /// Release the memory allocated by <see cref="WebPPictureAlloc"/> or <see cref="WebPPictureImport"/>.
+        /// </summary>
+        /// <param name="picture">The picture to initialize.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="picture"/> is null.</exception>
+        public static void WebPPictureFree(WebPPicture picture)
+        {
+            if (picture == null)
+                throw new ArgumentNullException(nameof(picture));
+
+            NativeMethods.webp_WebPPictureFree(picture.NativePtr);
+        }
+
     }
 
 }

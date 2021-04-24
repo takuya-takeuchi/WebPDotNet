@@ -10,6 +10,8 @@ namespace WebPDotNet.Tests
     public sealed partial class WebPTest
     {
 
+        #region WebPConfig
+
         [Fact]
         public void WebPConfig()
         {
@@ -603,6 +605,83 @@ namespace WebPDotNet.Tests
 
             this.DisposeAndCheckDisposedState(config);
         }
+
+        #endregion
+
+        #region WebPPicture
+
+        [Fact]
+        public void WebPPicture()
+        {
+            var picture = new WebPPicture();
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        [Fact]
+        public void WebPPictureInit()
+        {
+            var picture = new WebPPicture();
+
+            Assert.True(WebP.WebPPictureInit(picture));
+
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        [Fact]
+        public void WebPPictureAlloc()
+        {
+            var picture = new WebPPicture();
+
+            Assert.True(WebP.WebPPictureInit(picture));
+
+            picture.Width = 100;
+            picture.Height = 150;
+            Assert.True(WebP.WebPPictureAlloc(picture));
+            WebP.WebPPictureFree(picture);
+
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        [Fact]
+        public void WebPPictureHeight()
+        {
+            var picture = new WebPPicture();
+
+            Assert.True(WebP.WebPPictureInit(picture));
+
+            foreach (var value in new[] { 0, WebP.WebPMaxDimension })
+                picture.Height = value;
+
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        [Fact]
+        public void WebPPictureUseARGB()
+        {
+            var picture = new WebPPicture();
+
+            Assert.True(WebP.WebPPictureInit(picture));
+
+            foreach (var value in new[] { false, true })
+                picture.UseARGB = value;
+
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        [Fact]
+        public void WebPPictureWidth()
+        {
+            var picture = new WebPPicture();
+
+            Assert.True(WebP.WebPPictureInit(picture));
+
+            foreach (var value in new[] { 0, WebP.WebPMaxDimension })
+                picture.Width = value;
+
+            this.DisposeAndCheckDisposedState(picture);
+        }
+
+        #endregion
 
         [Fact]
         public void WebPGetEncoderVersion()

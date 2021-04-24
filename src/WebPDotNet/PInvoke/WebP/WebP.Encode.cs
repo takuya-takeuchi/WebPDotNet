@@ -98,6 +98,17 @@ namespace WebPDotNet
         [return: MarshalAs(UnmanagedType.U1)]
         public static extern bool webp_WebPValidateConfig(IntPtr config);
 
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPPictureInit(IntPtr picture);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        public static extern bool webp_WebPPictureAlloc(IntPtr picture);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPictureFree(IntPtr picture);
+
         #region WebPConfig
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
@@ -281,6 +292,34 @@ namespace WebPDotNet
         public static extern void webp_WebPConfig_set_qmax(IntPtr config, int32_t value);
 
         #endregion 
+
+        #region WebPPicture
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPPicture_new();
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_delete(IntPtr picture);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPPicture_get_use_argb(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_set_use_argb(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPPicture_get_width(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_set_width(IntPtr config, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPPicture_get_height(IntPtr config);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_set_height(IntPtr config, int32_t value);
+
+        #endregion
 
         #endregion
 

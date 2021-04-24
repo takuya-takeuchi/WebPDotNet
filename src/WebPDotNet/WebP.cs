@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace WebPDotNet
 {
@@ -9,6 +8,24 @@ namespace WebPDotNet
     /// </summary>
     public static partial class WebP
     {
+
+        #region Fields
+
+        /// <summary>
+        /// A read-only field that represents a value of maximum width/height allowed (inclusive), in pixels for WebP format.
+        /// </summary>
+        public static int WebPMaxDimension;
+
+        #endregion
+
+        #region Constructors
+
+        static WebP()
+        {
+            WebPMaxDimension = NativeMethods.webp_WEBP_MAX_DIMENSION();
+        }
+
+        #endregion
 
         #region Methods
 

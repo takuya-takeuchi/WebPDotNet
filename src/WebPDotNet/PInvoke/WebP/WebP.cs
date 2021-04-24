@@ -20,6 +20,9 @@ namespace WebPDotNet
         #region Functions
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WEBP_MAX_DIMENSION();
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
         public static extern void webp_WebPFree(IntPtr ptr);
 
         #endregion

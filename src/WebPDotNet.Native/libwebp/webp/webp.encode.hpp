@@ -103,6 +103,21 @@ DLLEXPORT const bool webp_WebPValidateConfig(WebPConfig* config)
     return WebPValidateConfig(config);
 }
 
+DLLEXPORT const bool webp_WebPPictureInit(WebPPicture* picture)
+{
+    return WebPPictureInit(picture) != 0;
+}
+
+DLLEXPORT const bool webp_WebPPictureAlloc(WebPPicture* picture)
+{
+    return WebPPictureAlloc(picture) != 0;
+}
+
+DLLEXPORT void webp_WebPPictureFree(WebPPicture* picture)
+{
+    WebPPictureFree(picture);
+}
+
 #pragma region WebPConfig functions
 
 DLLEXPORT const int32_t webp_WebPConfig_get_lossless(WebPConfig* config)
@@ -397,6 +412,40 @@ DLLEXPORT void webp_WebPConfig_set_qmax(WebPConfig* config, const int32_t value)
 
 #pragma endregion WebPConfig functions
 
+#pragma region WebPPicture functions
+
+DLLEXPORT const int32_t webp_WebPPicture_get_use_argb(WebPPicture* picture)
+{
+    return picture->use_argb;
+}
+
+DLLEXPORT void webp_WebPPicture_set_use_argb(WebPPicture* picture, const int32_t value)
+{
+    picture->use_argb = value;
+}
+
+DLLEXPORT const int32_t webp_WebPPicture_get_width(WebPPicture* picture)
+{
+    return picture->width;
+}
+
+DLLEXPORT void webp_WebPPicture_set_width(WebPPicture* picture, const int32_t value)
+{
+    picture->height = value;
+}
+
+DLLEXPORT const int32_t webp_WebPPicture_get_height(WebPPicture* picture)
+{
+    return picture->height;
+}
+
+DLLEXPORT void webp_WebPPicture_set_height(WebPPicture* picture, const int32_t value)
+{
+    picture->height = value;
+}
+
+#pragma endregion WebPPicture functions
+
 #pragma region non-libwebp functions
 
 DLLEXPORT const WebPConfig* webp_WebPConfig_new()
@@ -408,6 +457,17 @@ DLLEXPORT void webp_WebPConfig_delete(WebPConfig* config)
 {
     delete config;
 }
+
+DLLEXPORT const WebPPicture* webp_WebPPicture_new()
+{
+    return new WebPPicture();
+}
+
+DLLEXPORT void webp_WebPPicture_delete(WebPPicture* picture)
+{
+    delete picture;
+}
+
 
 #pragma endregion non-libwebp functions
 

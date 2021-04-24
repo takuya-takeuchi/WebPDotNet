@@ -49,4 +49,57 @@ DLLEXPORT const uint8_t* webp_WebPDecodeBGR(const uint8_t* data,
     return ::WebPDecodeBGR(data, data_size, width, height);
 }
 
+DLLEXPORT const uint8_t* webp_WebPDecodeRGBInto(const uint8_t* data,
+                                                const size_t data_size,
+                                                uint8_t* output,
+                                                const int64_t size,
+                                                const int32_t stride)
+{
+    return ::WebPDecodeRGBInto(data, data_size, output, size, stride);
+}
+
+DLLEXPORT const uint8_t* webp_WebPDecodeRGBAInto(const uint8_t* data,
+                                                 const size_t data_size,
+                                                 uint8_t* output,
+                                                 const int64_t size,
+                                                 const int32_t stride)
+{
+    return ::WebPDecodeRGBAInto(data, data_size, output, size, stride);
+}
+
+DLLEXPORT const uint8_t* webp_WebPDecodeARGBInto(const uint8_t* data,
+                                                 const size_t data_size,
+                                                 uint8_t* output,
+                                                 const int64_t size,
+                                                 const int32_t stride)
+{
+    return ::WebPDecodeARGBInto(data, data_size, output, size, stride);
+}
+
+DLLEXPORT const uint8_t* webp_WebPDecodeBGRInto(const uint8_t* data,
+                                                const size_t data_size,
+                                                uint8_t* output,
+                                                const int64_t size,
+                                                const int32_t stride)
+{
+    return ::WebPDecodeBGRInto(data, data_size, output, size, stride);
+}
+
+DLLEXPORT const uint8_t* webp_WebPDecodeBGRAInto(const uint8_t* data,
+                                                 const size_t data_size,
+                                                 uint8_t* output,
+                                                 const int64_t size,
+                                                 const int32_t stride)
+{
+    return ::WebPDecodeBGRAInto(data, data_size, output, size, stride);
+}
+
+DLLEXPORT const bool webp_WebPGetInfo(const uint8_t* data,
+                                      const size_t data_size,
+                                      int32_t* width,
+                                      int32_t* height)
+{
+    return ::WebPGetInfo(data, data_size, width, height) == 1;
+}
+
 #endif // _CPP_WEBP_DECODE_H_

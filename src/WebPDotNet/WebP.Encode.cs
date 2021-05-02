@@ -399,6 +399,38 @@ namespace WebPDotNet
             NativeMethods.webp_WebPPictureFree(picture.NativePtr);
         }
 
+        public static void WebPMemoryWriterInit(WebPMemoryWriter writer)
+        {
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
+
+            NativeMethods.webp_WebPMemoryWriterInit(writer.NativePtr);
+        }
+
+        public static void WebPMemoryWriterClear(WebPMemoryWriter writer)
+        {
+            if (writer == null)
+                throw new ArgumentNullException(nameof(writer));
+
+            NativeMethods.webp_WebPMemoryWriterClear(writer.NativePtr);
+        }
+
+        public static int WebPMemoryWrite(byte[] data, WebPPicture picture)
+        {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
+            if (picture == null)
+                throw new ArgumentNullException(nameof(picture));
+
+            unsafe
+            {
+                fixed (byte* p = &data[0])
+                {
+                    return NativeMethods.webp_WebPMemoryWrite((IntPtr)p, data.Length, picture.NativePtr);
+                }
+            }
+        }
+
     }
 
 }

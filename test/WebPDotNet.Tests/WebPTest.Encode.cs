@@ -720,6 +720,33 @@ namespace WebPDotNet.Tests
         }
 
         #endregion
+        
+        #region WebPMemoryWriter
+
+        [Fact]
+        public void WebPMemoryWriter()
+        {
+            var writer = new WebPMemoryWriter();
+            this.DisposeAndCheckDisposedState(writer);
+        }
+
+        [Fact]
+        public void WebPMemoryWriterInit()
+        {
+            var writer = new WebPMemoryWriter();
+            WebP.WebPMemoryWriterInit(writer);
+            this.DisposeAndCheckDisposedState(writer);
+        }
+
+        [Fact]
+        public void WebPMemoryWriterClear()
+        {
+            var writer = new WebPMemoryWriter();
+            WebP.WebPMemoryWriterClear(writer);
+            this.DisposeAndCheckDisposedState(writer);
+        }
+
+        #endregion
 
         [Fact]
         public void WebPGetEncoderVersion()

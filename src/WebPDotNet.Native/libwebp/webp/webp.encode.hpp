@@ -118,6 +118,23 @@ DLLEXPORT void webp_WebPPictureFree(WebPPicture* picture)
     WebPPictureFree(picture);
 }
 
+DLLEXPORT void webp_WebPMemoryWriterInit(WebPMemoryWriter* writer)
+{
+    WebPMemoryWriterInit(writer);
+}
+
+DLLEXPORT void webp_WebPMemoryWriterClear(WebPMemoryWriter* writer)
+{
+    WebPMemoryWriterClear(writer);
+}
+
+DLLEXPORT int32_t webp_WebPMemoryWrite(const uint8_t* data,
+                                       size_t data_size,
+                                       const WebPPicture* picture)
+{
+    return WebPMemoryWrite(data, data_size, picture);
+}
+
 #pragma region WebPConfig functions
 
 DLLEXPORT const int32_t webp_WebPConfig_get_lossless(WebPConfig* config)
@@ -446,6 +463,62 @@ DLLEXPORT void webp_WebPPicture_set_height(WebPPicture* picture, const int32_t v
 
 #pragma endregion WebPPicture functions
 
+#pragma region WebPMemoryWriter functions
+
+DLLEXPORT const uint8_t* webp_WebPMemoryWriter_get_mem(WebPMemoryWriter* writer)
+{
+    return writer->mem;
+}
+
+DLLEXPORT void webp_WebPMemoryWriter_set_mem(WebPMemoryWriter* writer, uint8_t* const value)
+{
+    writer->mem = value;
+}
+
+DLLEXPORT const size_t webp_WebPMemoryWriter_get_size(WebPMemoryWriter* writer)
+{
+    return writer->size;
+}
+
+DLLEXPORT void webp_WebPMemoryWriter_set_size(WebPMemoryWriter* writer, const size_t value)
+{
+    writer->size = value;
+}
+
+DLLEXPORT const size_t webp_WebPMemoryWriter_get_max_size(WebPMemoryWriter* writer)
+{
+    return writer->max_size;
+}
+
+DLLEXPORT void webp_WebPMemoryWriter_set_max_size(WebPMemoryWriter* writer, const size_t value)
+{
+    writer->max_size = value;
+}
+
+DLLEXPORT const int32_t webp_WebPMemoryWriter_get_pad(WebPMemoryWriter* writer,
+                                                      uint32_t** ret,
+                                                      uint32_t* ret_len)
+{
+    const size_t len = array_length(writer->pad);
+    uint32_t* mem = (uint32_t*)malloc(sizeof(uint32_t) * len);
+    if (!mem) return ERR_GENERAL_MEMALLOC;
+    memcpy(mem, &(writer->pad[0]), sizeof(uint32_t) * len);
+    *ret = mem;
+    return ERR_OK;
+}
+
+DLLEXPORT int32_t webp_WebPMemoryWriter_set_pad(WebPMemoryWriter* writer,
+                                               const uint32_t* value,
+                                               const int32_t value_len)
+{
+    const size_t len = array_length(writer->pad);
+    if (!(0 <= len && len < value_len)) return ERR_GENERAL_OUT_OF_RANGE;
+    memcpy(&(writer->pad[0]), value, sizeof(uint32_t) * value_len);
+    return ERR_OK;
+}
+
+#pragma endregion WebPMemoryWriter functions
+
 #pragma region non-libwebp functions
 
 DLLEXPORT const WebPConfig* webp_WebPConfig_new()
@@ -468,6 +541,15 @@ DLLEXPORT void webp_WebPPicture_delete(WebPPicture* picture)
     delete picture;
 }
 
+DLLEXPORT const WebPMemoryWriter* webp_WebPMemoryWriter_new()
+{
+    return new WebPMemoryWriter();
+}
+
+DLLEXPORT void webp_WebPMemoryWriter_delete(WebPMemoryWriter* config)
+{
+    delete config;
+}
 
 #pragma endregion non-libwebp functions
 

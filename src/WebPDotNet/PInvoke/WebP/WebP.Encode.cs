@@ -109,6 +109,17 @@ namespace WebPDotNet
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
         public static extern void webp_WebPPictureFree(IntPtr picture);
 
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriterInit(IntPtr writer);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriterClear(IntPtr writer);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPMemoryWrite(IntPtr data,
+                                                          size_t data_size,
+                                                          IntPtr picture);
+
         #region WebPConfig
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
@@ -318,6 +329,44 @@ namespace WebPDotNet
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
         public static extern void webp_WebPPicture_set_height(IntPtr config, int32_t value);
+
+        #endregion
+
+        #region WebPMemoryWriter
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPMemoryWriter_new();
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriter_delete(IntPtr writer);
+        
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPMemoryWriter_get_mem(IntPtr writer);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriter_set_mem(IntPtr writer, IntPtr value);
+        
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPMemoryWriter_get_size(IntPtr writer);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriter_set_size(IntPtr writer, size_t value);
+        
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern size_t webp_WebPMemoryWriter_get_max_size(IntPtr writer);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPMemoryWriter_set_max_size(IntPtr writer, size_t value);
+        
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPMemoryWriter_get_pad(IntPtr writer,
+                                                                   out IntPtr ret,
+                                                                   out uint32_t ret_len);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern int32_t webp_WebPMemoryWriter_set_pad(IntPtr writer,
+                                                                  uint32_t[] value,
+                                                                  int32_t value_len);
 
         #endregion
 

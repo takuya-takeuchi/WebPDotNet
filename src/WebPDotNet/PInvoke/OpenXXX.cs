@@ -28,6 +28,8 @@ namespace WebPDotNet
 
             GeneralOutOfRange       = -(GeneralError | 0x00000002),
 
+            GeneralMemAlloc         = -(GeneralError | 0x00000003),
+
             #endregion
 
             #region Image

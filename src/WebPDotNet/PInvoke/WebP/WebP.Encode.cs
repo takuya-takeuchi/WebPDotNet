@@ -313,22 +313,34 @@ namespace WebPDotNet
         public static extern void webp_WebPPicture_delete(IntPtr picture);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern int32_t webp_WebPPicture_get_use_argb(IntPtr config);
+        public static extern int32_t webp_WebPPicture_get_use_argb(IntPtr picture);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern void webp_WebPPicture_set_use_argb(IntPtr config, int32_t value);
+        public static extern void webp_WebPPicture_set_use_argb(IntPtr picture, int32_t value);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern int32_t webp_WebPPicture_get_width(IntPtr config);
+        public static extern int32_t webp_WebPPicture_get_width(IntPtr picture);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern void webp_WebPPicture_set_width(IntPtr config, int32_t value);
+        public static extern void webp_WebPPicture_set_width(IntPtr picture, int32_t value);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern int32_t webp_WebPPicture_get_height(IntPtr config);
+        public static extern int32_t webp_WebPPicture_get_height(IntPtr picture);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern void webp_WebPPicture_set_height(IntPtr config, int32_t value);
+        public static extern void webp_WebPPicture_set_height(IntPtr picture, int32_t value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPPicture_get_custom_ptr(IntPtr picture);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_set_custom_ptr(IntPtr picture, IntPtr value);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern IntPtr webp_WebPPicture_get_writer(IntPtr picture);
+
+        [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
+        public static extern void webp_WebPPicture_set_writer(IntPtr picture, IntPtr value);
 
         #endregion
 
@@ -359,14 +371,14 @@ namespace WebPDotNet
         public static extern void webp_WebPMemoryWriter_set_max_size(IntPtr writer, size_t value);
         
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern int32_t webp_WebPMemoryWriter_get_pad(IntPtr writer,
-                                                                   out IntPtr ret,
-                                                                   out uint32_t ret_len);
+        public static extern ErrorType webp_WebPMemoryWriter_get_pad(IntPtr writer,
+                                                                     out IntPtr ret,
+                                                                     out uint32_t ret_len);
 
         [DllImport(NativeLibrary, CallingConvention = CallingConvention)]
-        public static extern int32_t webp_WebPMemoryWriter_set_pad(IntPtr writer,
-                                                                  uint32_t[] value,
-                                                                  int32_t value_len);
+        public static extern ErrorType webp_WebPMemoryWriter_set_pad(IntPtr writer,
+                                                                     uint32_t[] value,
+                                                                     int32_t value_len);
 
         #endregion
 

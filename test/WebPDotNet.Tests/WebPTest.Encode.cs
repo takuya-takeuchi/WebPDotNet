@@ -746,6 +746,36 @@ namespace WebPDotNet.Tests
             this.DisposeAndCheckDisposedState(writer);
         }
 
+        [Fact]
+        public void WebPMemoryWriterMaxSize()
+        {
+            var writer = new WebPMemoryWriter();
+            WebP.WebPMemoryWriterInit(writer);
+
+            foreach (var value in new[] { 0, 100, 1000 })
+            {
+                writer.MaxSize = value;
+                Assert.Equal(value, writer.MaxSize);
+            }
+
+            this.DisposeAndCheckDisposedState(writer);
+        }
+
+        [Fact]
+        public void WebPMemoryWriterSize()
+        {
+            var writer = new WebPMemoryWriter();
+            WebP.WebPMemoryWriterInit(writer);
+
+            foreach (var value in new[] { 0, 100, 1000 })
+            {
+                writer.Size = value;
+                Assert.Equal(value, writer.Size);
+            }
+
+            this.DisposeAndCheckDisposedState(writer);
+        }
+
         #endregion
 
         [Fact]

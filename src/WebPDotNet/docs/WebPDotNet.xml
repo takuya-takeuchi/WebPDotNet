@@ -761,6 +761,11 @@
             Specifies that the preset is not specified.
             </summary>
         </member>
+        <member name="M:WebPDotNet.WebPMemoryWriter.DisposeUnmanaged">
+            <summary>
+            Releases all unmanaged resources.
+            </summary>
+        </member>
         <member name="T:WebPDotNet.WebPObject">
             <summary>
             A class which has a pointer of native structure.

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace WebPDotNet
 {
@@ -9,6 +10,19 @@ namespace WebPDotNet
     public sealed class WebPPicture : WebPObject
     {
 
+        #region Delegates
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int NativeWebPWriterFunction(IntPtr data, Int64 dataSize, IntPtr picture);
+
+        #endregion
+
+        #region Fields
+
+        private DelegateHandler<NativeWebPWriterFunction> _NativeWebPWriterFunctionDelegate;
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -17,11 +31,39 @@ namespace WebPDotNet
         public WebPPicture()
         {
             this.NativePtr = NativeMethods.webp_WebPPicture_new();
+            this._NativeWebPWriterFunctionDelegate = new DelegateHandler<NativeWebPWriterFunction>(this.WebPWriterFunctionCallback);
+        }
+
+        internal WebPPicture(IntPtr ptr) :
+            base(false)
+        {
+            this.NativePtr = ptr;
+            this._NativeWebPWriterFunctionDelegate = new DelegateHandler<NativeWebPWriterFunction>(this.WebPWriterFunctionCallback);
         }
 
         #endregion
 
         #region Properties
+
+        public WebPMemoryWriter CustomPtr
+        {
+            get
+            {
+                this.ThrowIfDisposed();
+                var ret = NativeMethods.webp_WebPPicture_get_custom_ptr(this.NativePtr);
+                return ret != IntPtr.Zero ? new WebPMemoryWriter(ret) : null;
+            }
+            set
+            {
+                this.ThrowIfDisposed();
+
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+                value.ThrowIfDisposed();
+
+                NativeMethods.webp_WebPPicture_set_custom_ptr(this.NativePtr, value.NativePtr);
+            }
+        }
 
         /// <summary>
         /// Sets or get the height, in pixels.
@@ -87,6 +129,36 @@ namespace WebPDotNet
                 NativeMethods.webp_WebPPicture_set_width(this.NativePtr, value);
             }
         }
+
+        private WebPWriterFunction _Writer;
+
+        public WebPWriterFunction Writer
+        {
+            get
+            {
+                this.ThrowIfDisposed();
+                return this._Writer;
+            }
+            set
+            {
+                this.ThrowIfDisposed();
+                NativeMethods.webp_WebPPicture_set_writer(this.NativePtr, value == null ? IntPtr.Zero : this._NativeWebPWriterFunctionDelegate.Handle);
+                this._Writer = value;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        #region Helpers
+
+        public int WebPWriterFunctionCallback(IntPtr data, Int64 dataSize, IntPtr picture)
+        {
+            return this._Writer.Invoke(data, dataSize, new WebPPicture(picture));
+        }
+
+        #endregion
 
         #endregion
 

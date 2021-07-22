@@ -461,6 +461,26 @@ DLLEXPORT void webp_WebPPicture_set_height(WebPPicture* picture, const int32_t v
     picture->height = value;
 }
 
+DLLEXPORT const void* webp_WebPPicture_get_custom_ptr(WebPPicture* picture)
+{
+    return picture->custom_ptr;
+}
+
+DLLEXPORT void webp_WebPPicture_set_custom_ptr(WebPPicture* picture, void* const value)
+{
+    picture->custom_ptr = value;
+}
+
+DLLEXPORT const WebPWriterFunction webp_WebPPicture_get_writer(WebPPicture* picture)
+{
+    return picture->writer;
+}
+
+DLLEXPORT void webp_WebPPicture_set_writer(WebPPicture* picture, const WebPWriterFunction value)
+{
+    picture->writer = value;
+}
+
 #pragma endregion WebPPicture functions
 
 #pragma region WebPMemoryWriter functions
